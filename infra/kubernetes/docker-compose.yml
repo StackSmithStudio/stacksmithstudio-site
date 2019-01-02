@@ -1,0 +1,44 @@
+version: '2'
+
+services:
+  site:
+    image: gtdev87/stacksmithstudio-site
+    labels:
+      kompose.volume.size: 5Gi
+    build:
+      context: ../../frontend
+      dockerfile: Dockerfile
+    ports:
+      - '8000:8000'
+    environment:
+      WORKER_CONNECTIONS: 1024
+    volumes:
+      - webapp_files:/webapp:rw
+    depends_on:
+      - provider
+
+  nginx:
+    image: gtdev87/stacksmithstudio-nginx
+    build:
+      context: ../../nginx
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - NGINX_PORT=8000
+    volumes_from:
+      - site
+    volumes:
+      - webapp_files:/webapp:ro
+    depends_on:
+      - site
+
+  provider:
+    image: gtdev87/netlify-cms-github-oauth-provider
+    ports:
+      - "8001:8001"
+    expose:
+      - "8001"
+    env_file:
+      - secret-config.env
+

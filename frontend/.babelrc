@@ -1,0 +1,54 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "loose": true,
+        "modules": false,
+        "useBuiltIns": "usage",
+        "shippedProposals": true,
+        "targets": {
+          "browsers": [
+            ">0.25%",
+            "not dead",
+            "safari >= 7",
+            "chrome >= 58",
+            "ie >= 10"
+          ]
+        }
+      }
+    ],
+    [
+      "@babel/preset-react",
+      {
+        "useBuiltIns": true,
+        "pragma": "React.createElement"
+      }
+    ],
+    "@babel/preset-flow"
+  ],
+  "plugins": [
+    [
+      "babel-plugin-emotion",
+      {
+        "autoLabel": true
+      }
+    ],
+    [
+      "@babel/plugin-proposal-class-properties",
+      {
+        "loose": true
+      }
+    ],
+    "@babel/plugin-syntax-dynamic-import",
+    ["@babel/plugin-proposal-object-rest-spread", { "loose": true, "useBuiltIns": true }],
+    "babel-plugin-macros",
+    [
+      "@babel/plugin-transform-runtime",
+      {
+        "helpers": true,
+        "regenerator": true
+      }
+    ]
+  ]
+}

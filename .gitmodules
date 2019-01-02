@@ -1,0 +1,9 @@
+[submodule "csi-digitalocean"]
+	path = csi-digitalocean
+	url = https://github.com/digitalocean/csi-digitalocean
+[submodule "typhoon"]
+	path = typhoon
+	url = https://github.com/poseidon/typhoon
+[submodule "infra/kubernetes/typhoon"]
+	path = infra/kubernetes/typhoon
+	url = https://github.com/poseidon/typhoon

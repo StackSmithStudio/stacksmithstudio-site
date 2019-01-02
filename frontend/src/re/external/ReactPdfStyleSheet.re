@@ -1,0 +1,188 @@
+type t;
+type styleSheet;
+[@bs.module "@react-pdf/renderer"] external styleSheet: t = "StyleSheet";
+[@bs.send] external create: (t, ReactDOMRe.style) => styleSheet = "create";
+
+/*
+Note: Valid units
+pt (default. Based on the standard 72 dpi PDF document)
+in inches
+mm millimeters
+cm centimeters
+% percentage
+
+If things start to crash, use less % because render is taxed with dynamic rendering.
+*/
+
+/* fontSize uses a number no px */
+
+let createStyleSheet = (
+  ~alignContent=?,
+  ~alignItems=?,
+  ~alignSelf=?,
+  ~flex=?,
+  ~flexDirection=?,
+  ~flexWrap=?,
+  ~flexFlow=?,
+  ~flexGrow=?,
+  ~flexShrink=?,
+  ~flexBasis=?,
+  ~justifyContent=?,
+  ~order=?,
+  ~bottom=?,
+  ~display=?,
+  ~left=?,
+  ~position=?,
+  ~right=?,
+  ~top=?,
+  ~height=?,
+  ~maxHeight=?,
+  ~maxWidth=?,
+  ~minHeight=?,
+  ~minWidth=?,
+  ~width=?,
+  ~backgroundColor=?,
+  ~color=?,
+  ~fontSize=?,
+  ~fontWeight=?,
+  ~fontFamily=?,
+  ~letterSpacing=?,
+  ~lineHeight=?,
+  ~textAlign=?,
+  ~textDecoration=?,
+  ~textDecorationColor=?,
+  ~textDecorationStyle=?,
+  ~textTransform=?,
+  ~margin=?,
+  /* ~marginHorizontal=?, */
+  /* ~marginVertical=?, */
+  ~marginTop=?,
+  ~marginRight=?,
+  ~marginBottom=?,
+  ~marginLeft=?,
+  ~padding=?,
+  /* ~paddingHorizontal=?, */
+  /* ~paddingVertical=?, */
+  ~paddingTop=?,
+  ~paddingRight=?,
+  ~paddingBottom=?,
+  ~paddingLeft=?,
+
+  /* ~transform:rotate=?,
+  ~transform:scale=?,
+  ~transform:scaleX=?,
+  ~transform:scaleY=?,
+  ~transform:translate=?,
+  ~transform:translateX=?, */
+  ~border=?,
+  ~borderWidth=?,
+  ~borderColor=?,
+  ~borderTop=?,
+  ~borderTopColor=?,
+  ~borderTopStyle=?,
+  ~borderTopWidth=?,
+  ~borderRight=?,
+  ~borderRightColor=?,
+  ~borderRightStyle=?,
+  ~borderRightWidth=?,
+  ~borderBottom=?,
+  ~borderBottomColor=?,
+  ~borderBottomStyle=?,
+  ~borderBottomWidth=?,
+  ~borderLeft=?,
+  ~borderLeftColor=?,
+  ~borderLeftStyle=?,
+  ~borderLeftWidth=?,
+  ~borderRadius=?,
+  ~borderTopLeftRadius=?,
+  ~borderTopRightRadius=?,
+  ~borderBottomRightRadius=?,
+  ~borderBottomLeftRadius=?,
+  (),
+) : styleSheet =>
+  ReactDOMRe.Style.make(
+    ~alignContent?,
+    ~alignItems?,
+    ~alignSelf?,
+    ~flex?,
+    ~flexDirection?,
+    ~flexWrap?,
+    ~flexFlow?,
+    ~flexGrow?,
+    ~flexShrink?,
+    ~flexBasis?,
+    ~justifyContent?,
+    ~order?,
+    ~bottom?,
+    ~display?,
+    ~left?,
+    ~position?,
+    ~right?,
+    ~top?,
+    ~height?,
+    ~maxHeight?,
+    ~maxWidth?,
+    ~minHeight?,
+    ~minWidth?,
+    ~width?,
+    ~backgroundColor?,
+    ~color?,
+    ~fontSize?,
+    ~fontWeight?,
+    ~fontFamily?,
+    ~letterSpacing?,
+    ~lineHeight?,
+    ~textAlign?,
+    ~textDecoration?,
+    ~textDecorationColor?,
+    ~textDecorationStyle?,
+    ~textTransform?,
+    ~margin?,
+    /* ~marginHorizontal, */
+    /* ~marginVertical, */
+    ~marginTop?,
+    ~marginRight?,
+    ~marginBottom?,
+    ~marginLeft?,
+    ~padding?,
+    ~paddingTop?,
+    ~paddingRight?,
+    ~paddingBottom?,
+    ~paddingLeft?,
+    /* ~paddingHorizontal, */
+    /* ~paddingVertical, */
+    /* ~transform:rotate,
+    ~transform:scale,
+    ~transform:scaleX,
+    ~transform:scaleY,
+    ~transform:translate,
+    ~transform:translateX, */
+    ~border?,
+    ~borderWidth?,
+    ~borderColor?,
+    ~borderTop?,
+    ~borderTopColor?,
+    ~borderTopStyle?,
+    ~borderTopWidth?,
+    ~borderRight?,
+    ~borderRightColor?,
+    ~borderRightStyle?,
+    ~borderRightWidth?,
+    ~borderBottom?,
+    ~borderBottomColor?,
+    ~borderBottomStyle?,
+    ~borderBottomWidth?,
+    ~borderLeft?,
+    ~borderLeftColor?,
+    ~borderLeftStyle?,
+    ~borderLeftWidth?,
+    ~borderRadius?,
+    ~borderTopLeftRadius?,
+    ~borderTopRightRadius?,
+    ~borderBottomRightRadius?,
+    ~borderBottomLeftRadius?,
+    (),
+  )
+  |> create(styleSheet, _);
+
+

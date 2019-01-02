@@ -1,0 +1,1 @@
+let listToReactArray = list => list |> Belt.List.toArray |> ReasonReact.array;

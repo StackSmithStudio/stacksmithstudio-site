@@ -1,0 +1,159 @@
+/* purgecss start ignore */
+.bg-greg-image {
+  background-image: url("/greg.jpg");
+}
+
+html, body {
+  min-height: 100%;
+  height: 100%;
+  font-size: 12px;
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+@media (min-width: 576px) {
+  html, body {
+    font-size: 12px
+  }
+}
+
+@media (min-width: 768px) {
+  html, body {
+    font-size: 13px
+  }
+}
+
+@media (min-width: 992px) {
+  html, body {
+    font-size: 14px
+  }
+}
+
+@media (min-width: 1200px) {
+  html, body {
+    font-size: 16px
+  }
+}
+
+.spectacle-content {
+  transform: scale(1) !important;
+  max-width: inherit !important;
+  width: 100% !important;
+  height: 100% !important;
+  margin: 1rem !important;
+  padding: 0rem 0 !important;
+}
+
+.spectacle-content > div {
+  width: 100% !important;
+  height: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  padding: 5em 2em;
+}
+
+.spectacle-deck {
+  overflow-x: hidden;
+  touch-action: none;
+}
+
+.spectacle-content h1 {
+  font-size: 1em;
+}
+
+.spectacle-content h2 {
+  font-size: 1.4em;
+}
+
+.spectacle-content h3 {
+  font-size: 1.3em;
+}
+
+.spectacle-content > * > *:only-child {
+  margin-bottom: inherit;
+}
+
+.spectacle-content > * > * {
+  overflow: hidden;
+}
+
+.spectacle-content > * > *:not(:only-child) {
+  max-height: 66%;
+}
+
+.spectacle-content > * > *:not(:only-child):last-child {
+  margin-bottom: auto;
+}
+
+.spectacle-content > * > *:not(:only-child):not(:last-child) {
+  padding-bottom: 1em;
+  margin-bottom: 0;
+}
+
+.spectacle-content h4 {
+  font-size: 1.2em;
+}
+
+.spectacle-content p {
+  font-size: 1em;
+  color: white;
+  text-align: left;
+}
+
+.spectacle-content img {
+  height: auto;
+  max-width: 75%;
+  object-fit: contain;
+}
+
+.spectacle-content li {
+  font-size: .8em;
+}
+
+.spectacle-content tr {
+  font-size: .8em;
+}
+
+.spectacle-content td {
+  font-size: .6em;
+}
+
+@media (min-width: 576px) {
+  .spectacle-content {
+    font-size: 1.6rem;
+    margin: 0 16% !important;
+  }
+  .spectacle-content > div {
+    padding: 0;
+    padding-top: 2rem;
+  }
+
+}
+
+@media (min-width: 768px) {
+  .spectacle-content {
+    font-size: 1.7rem;
+    margin: 0 16% !important;
+  }
+}
+
+@media (min-width: 992px) {
+  .spectacle-content {
+    font-size: 1.8rem;
+    margin: 0 20% !important;
+  }
+}
+
+@media (min-width: 1200px) {
+  .spectacle-content {
+    font-size: 1.9rem;
+    margin: 0 20% !important;
+  }
+}
+
+
+/* purgecss end ignore */
