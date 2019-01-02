@@ -3,9 +3,9 @@ title: Experiment Project Title
 role: Experiment Project Role
 categories:
   - Experiment Project Category
-cover: /frontend/img/adult-books-business-374016.jpg
+cover: /img/adult-books-business-374016.jpg
 images:
-  - image: /frontend/img/adult-books-business-374016.jpg
+  - image: /img/adult-books-business-374016.jpg
 jobType:
   - Experiment Job Tile
 featured: true
