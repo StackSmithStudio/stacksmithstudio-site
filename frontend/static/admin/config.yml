@@ -24,6 +24,7 @@ collections:
     create: false
     fields:
       - {label: "Title", name: "title", widget: "string"}
+      - {label: "Name", name: "name", widget: "string"}
       - {label: "Body", name: "body", widget: "markdown"}
 
   - name: "posts"
@@ -50,12 +51,11 @@ collections:
       - {label: "Cover", name: "cover", widget: image}
       - {label: "Images", name: "images", widget: list, fields: [{label: "Image", name: "image", widget: image}]}
       - {label: "Job Type", name: "jobType", widget: "list"}
-      - {label: "Featured?", name: "featured", widget: "boolean"}
-      - {label: "On Resume?", name: "resume", widget: "boolean"}
-      - {label: "Start Time", name: "startTime", widget: "MMM YYYY"}
-      - {label: "End Time", name: "endTime", widget: "datetime", format: "MMM YYYY"}
-      - {label: "End Time", name: "endTime", widget: "datetime", format: "MMM YYYY"}
-      - {label: "Sub Title", name: "endDate", widget: "datetime"}
+      - {label: "Featured?", name: "featured", widget: "boolean", default: true}
+      - {label: "On Resume?", name: "resume", widget: "boolean", default: false}
+      - {label: "Start Time", name: "startTime", widget: "date", format: "MMM YYYY"}
+      - {label: "End Time", name: "endTime", widget: "date", format: "MMM YYYY"}
+      - {label: "End Date", name: "endDate", widget: "date"}
       - {label: "Body", name: "body", widget: "markdown"}
 
   - name: "proposals"
