@@ -20,9 +20,9 @@ let make = (~props: PagePropType.props, _children) => {
       props##data##page##frontmatter##images
       |> Belt.List.fromArray
       |> Belt.List.reduce(_, props##data##page##rawBody, (memoBody, image) => {
-        image##base
+        image##image##base
         |> Js.Re.fromStringWithFlags(_, "g")
-        |> Js.String.replaceByRe(_, image##publicURL, memoBody);
+        |> Js.String.replaceByRe(_, image##image##publicURL, memoBody);
       });
     /* images need to be in the images list */
     /* Note skips first page for metadata */

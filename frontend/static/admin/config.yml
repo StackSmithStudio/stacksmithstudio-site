@@ -5,19 +5,65 @@ backend:
   base_url: https://github.stacksmithstudio.com
 
 
-media_folder: static/img
-public_folder: /img
+media_folder: frontend/static/img
+public_folder: frontend/img
 
 collections:
-  - name: "blog"
-    label: "Blog"
-    folder: "src/content/pages/pages"
+  - name: "pages"
+    label: "Pages"
+    folder: "frontend/src/content/pages"
     create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
-      - {label: "Template Key", name: "templateKey", widget: "hidden", default: "blog-post"}
       - {label: "Title", name: "title", widget: "string"}
-      - {label: "Publish Date", name: "date", widget: "datetime"}
-      - {label: "Description", name: "description", widget: "text"}
+      - {label: "Categories", name: "categories", widget: "list"}
       - {label: "Body", name: "body", widget: "markdown"}
-      - {label: "Tags", name: "tags", widget: "list"}
+
+  - name: "parts"
+    label: "Parts"
+    folder: "frontend/src/content/parts"
+    create: false
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Body", name: "body", widget: "markdown"}
+
+  - name: "posts"
+    label: "Posts"
+    folder: "frontend/src/content/posts"
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    create: true
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Sub Title", name: "subTitle", widget: "string"}
+      - {label: "Categories", name: "categories", widget: "list"}
+      - {label: "Cover", name: "cover", widget: image}
+      - {label: "Body", name: "body", widget: "markdown"}
+
+  - name: "projects"
+    label: "Projects"
+    folder: "frontend/src/content/projects"
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    create: true
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Role", name: "role", widget: "string"}
+      - {label: "Categories", name: "categories", widget: "list"}
+      - {label: "Cover", name: "cover", widget: image}
+      - {label: "Images", name: "images", widget: list, fields: [{label: "Image", name: "image", widget: image}]}
+      - {label: "Job Type", name: "jobType", widget: "list"}
+      - {label: "Featured?", name: "featured", widget: "boolean"}
+      - {label: "On Resume?", name: "resume", widget: "boolean"}
+      - {label: "Start Time", name: "startTime", widget: "MMM YYYY"}
+      - {label: "End Time", name: "endTime", widget: "datetime", format: "MMM YYYY"}
+      - {label: "End Time", name: "endTime", widget: "datetime", format: "MMM YYYY"}
+      - {label: "Sub Title", name: "endDate", widget: "datetime"}
+      - {label: "Body", name: "body", widget: "markdown"}
+
+  - name: "proposals"
+    label: "Proposals"
+    folder: "frontend/src/content/proposals"
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    create: true
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Images", name: "images", widget: list, fields: [{label: "Image", name: "image", widget: image}]}
+      - {label: "Body", name: "body", widget: "markdown"}

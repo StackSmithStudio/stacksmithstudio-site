@@ -1,6 +1,6 @@
 require('dotenv').config();
-const config = require('./src/content/meta/config');
-const routes = require('./src/content/meta/routes');
+const config = require('./src/meta/config');
+const routes = require('./src/meta/routes');
 
 const subRemarkPlugins = [
   {

@@ -27,8 +27,10 @@ export const pageQuery = graphql`
         title
         categories
         images{
-          base
-          publicURL
+          image {
+            base
+            publicURL
+          }
         }
       }
     }

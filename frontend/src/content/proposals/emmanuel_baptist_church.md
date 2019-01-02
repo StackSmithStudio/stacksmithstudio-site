@@ -1,6 +1,14 @@
 ---
 title: Emmanuel Baptist Church
-images: ["site_interactive.png", "service_times.png", "no_info.png", "mobile_confusing.png", "netlify_control.png", "magnifying_glass.jpeg", "no_menu.png", "ohhh_menu.png"]
+images:
+  - image: "site_interactive.png"
+  - image: "service_times.png"
+  - image: "no_info.png"
+  - image: "mobile_confusing.png"
+  - image: "netlify_control.png"
+  - image: "magnifying_glass.jpeg"
+  - image: "no_menu.png"
+  - image: "ohhh_menu.png"
 ---
 
 # Emmanuel Baptist Church

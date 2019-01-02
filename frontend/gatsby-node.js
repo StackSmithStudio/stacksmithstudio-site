@@ -4,7 +4,7 @@ const Promise = require('bluebird');
 const PurgeCssPlugin = require(`purgecss-webpack-plugin`);
 const glob = require(`glob`);
 const { createFilePath } = require(`gatsby-source-filesystem`);
-const routes = require('./src/content/meta/routes');
+const routes = require('./src/meta/routes');
 const componentWithMDXScope = require("gatsby-mdx/component-with-mdx-scope");
 
 
@@ -36,6 +36,7 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
 
     let slug;
     let prefix;
+    
 
     if (separatorExists) {
       const separatorPosition = filePath.indexOf(SLUG_SEPARATOR);
@@ -150,11 +151,6 @@ exports.createPages = ({ graphql, actions }) => {
             const srcPath = route.dir || route.path;
             const edges = items.filter(item => item.node.fields.source === (srcPath));
 
-            console.log("items.map((edge) => edge.node.fields.source) = %j", items.map((edge) => edge.node.fields.source));
-            console.log("edges.map((edge) => edge.node.fields.source) = %j", edges.map((edge) => edge.node.fields.source));
-            console.log("route.dir = %j", route.dir);
-            console.log("route.path = %j", route.path);
-            console.log("srcPath = %j", srcPath);
             edges.forEach((edge, index) => {
               createPage({
                 path: `${route.path}${edge.node.fields.slug}`,

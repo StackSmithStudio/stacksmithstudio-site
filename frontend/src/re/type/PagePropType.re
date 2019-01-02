@@ -4,6 +4,11 @@ type imageType = {
   "publicURL": string,
 };
 
+type imageWrapperType = {
+  .
+  "image": imageType,
+}
+
 type frontmatterType = {
   .
   "title": string,
@@ -12,7 +17,7 @@ type frontmatterType = {
   "role": string,
   "categories": array(string),
   "cover": imageType,
-  "images": array(imageType),
+  "images": array(imageWrapperType),
   "jobType": array(string),
 };
 

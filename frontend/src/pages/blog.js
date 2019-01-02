@@ -5,6 +5,8 @@ import PageBlog from '../../lib/es6_global/src/re/page/Page_Blog.bs.js';
 
 export default (props) => <PageBlog props={props} />;
 
+console.log("blah")
+
 export const query = graphql`
   query {
     posts: allMdx(
