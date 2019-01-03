@@ -4,6 +4,7 @@ const Promise = require('bluebird');
 const PurgeCssPlugin = require(`purgecss-webpack-plugin`);
 const glob = require(`glob`);
 const { createFilePath } = require(`gatsby-source-filesystem`);
+const { fmImagesToRelative } = require('gatsby-remark-relative-images');
 const routes = require('./src/meta/routes');
 const componentWithMDXScope = require("gatsby-mdx/component-with-mdx-scope");
 
@@ -24,12 +25,19 @@ exports.onCreateBabelConfig = ({ actions: { setBabelPlugin } }) => {
   })
 };
 
+
 exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions;
+
+  /* dumb hack */
+  const prevType = node.internal.type;
+  node.internal.type = (node.internal.type === `MarkdownRemark` || node.internal.type === `Mdx`) ? "MarkdownRemark" : prevType;
+  fmImagesToRelative(node);
+  node.internal.type = prevType;
+
   if (node.internal.type === `MarkdownRemark` || node.internal.type === `Mdx`) {
     const fileNode = getNode(node.parent);
     const filePath = createFilePath({ node, getNode });
-
     const source = fileNode.sourceInstanceName;
 
     const separatorExists = ~filePath.indexOf(SLUG_SEPARATOR);

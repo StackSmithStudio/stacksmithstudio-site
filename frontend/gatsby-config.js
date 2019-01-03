@@ -2,7 +2,24 @@ require('dotenv').config();
 const config = require('./src/meta/config');
 const routes = require('./src/meta/routes');
 
+let cmsUploadCMSName = "uploads";
+
+const gatsbyNetlifyCMSPaths = {
+  resolve: `gatsby-plugin-netlify-cms-paths`,
+  options: {
+    // Path to your Netlify CMS config file
+    cmsConfig: `/static/admin/config.yml`
+  }
+};
+
 const subRemarkPlugins = [
+  gatsbyNetlifyCMSPaths,
+  {
+    resolve: `gatsby-remark-relative-images`,
+    options: {
+      name: cmsUploadCMSName
+    }
+  },
   {
     resolve: 'gatsby-remark-images',
     options: {
@@ -58,6 +75,15 @@ module.exports = {
     description: config.siteDescription,
   },
   plugins: [
+    {
+      // keep as first gatsby-source-filesystem plugin for gatsby image support
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        path: `${__dirname}/static/img`,
+        name: cmsUploadCMSName,
+      },
+    },
+    gatsbyNetlifyCMSPaths,
     ...routes.routesArray.map((route) => {
       const contentPath = route.dir || route.path;
       return ({

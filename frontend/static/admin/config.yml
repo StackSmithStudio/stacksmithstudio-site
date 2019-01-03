@@ -6,7 +6,7 @@ backend:
 
 
 media_folder: frontend/static/img
-public_folder: frontend/img
+public_folder: /img
 
 collections:
   - name: "pages"
