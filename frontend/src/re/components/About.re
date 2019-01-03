@@ -5,6 +5,7 @@ let tw = Css.tw;
 
 let aboutClass = [%bs.raw {| css(tw`
   px-16
+  lg:px-0
   text-lg
 `)
 |}];
@@ -17,8 +18,6 @@ let aboutTextClass = [%bs.raw {| css(tw`
 |}];
 
 let aboutTextWrapperClass = [%bs.raw {| css(tw`
-  flex
-  justify-center
   text-lg
   mb-16
   text-black

@@ -8,7 +8,6 @@ const menu = [
   { label: 'About', to: '/#about', icon: InfoIcon },
   { label: 'Projects', to: '/#projects', icon: InfoIcon },
   { label: 'Contact', to: '/#contact', icon: BlogIcon },
-  { label: 'Resume', to: '/resume', icon: FolderIcon },
   // { label: 'Catalog', to: '/catalog', icon: FolderIcon },
   
 ];
