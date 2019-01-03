@@ -1,6 +1,6 @@
 let css = Css.css;
 
-let hiddenOpacity = [%bs.raw {| css(tw` opacity-0 `)|}];
+let hiddenOpacity = [%bs.raw {| css(tw` opacity-0 h-0 `)|}];
 
 let classTransitionIn = (waypointEntered) => waypointEntered ? "" : hiddenOpacity;
 

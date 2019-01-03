@@ -15,7 +15,8 @@ let introAreaCss = [%bs.raw
 
 let introAreaClass = [%bs.raw
   {| css(tw`
-    h-screen
+    min-h-screen
+    h-64
     flex
     flex-col
   `) |}
@@ -41,7 +42,9 @@ let heroAreaInnerClass = [%bs.raw
 /* https://stackoverflow.com/a/33644245/923636 */
 /* https://bugs.webkit.org/show_bug.cgi?id=137730 */
 let menuAreaClass = [%bs.raw {| css(tw`
-  flex-no-grow
+  sticky
+  pin-t	
+  z-10
 `) |}];
 
 type projectType = option(string);
@@ -77,10 +80,12 @@ let make = (~props: PagePropType.props, _children) => {
             <ProjectModalContent project=projVal />
           );
         }
-      }>
+      }
+    >
+      <div className=menuAreaClass> <Menu /> </div>
+        
       <div className=introAreaClass>
         <div className=heroAreaClass><div className=heroAreaInnerClass><Intro /></div></div>
-        <div className=menuAreaClass> <Menu /> </div>
       </div>
       <About />
       <Projects

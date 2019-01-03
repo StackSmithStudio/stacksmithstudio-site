@@ -1,22 +1,47 @@
 let component = ReasonReact.statelessComponent("Intro");
 
 let css = Css.css;
+let cx = Css.cx;
 let tw = Css.tw;
 let introClass = [%bs.raw
   {| css(tw`
     flex
+    flex-wrap
     justify-center
     items-center
     w-full
     h-full
-    bg-grey-darkest
+    bg-blue
+    pb-16
   `) |}
 ];
 
-let textClass = [%bs.raw {| css(tw`
+let introClassInternal = [%bs.raw {| css(tw`
+  w-full
+  mx-8
+  lg:w-2/3
+  lg:mx-0
+  flex
+  flex-wrap
+  justify-center
+  items-center
+  `)
+|}];
+
+let logoBaseClass = [%bs.raw {| css(tw`
   text-white
   text-5xl
-  pb-2
+  pb-8
+  w-full
+  border-0
+  border-white
+  border-b-2
+  border-r-0
+  md:w-1/4
+  md:border-r-2
+  md:border-b-0
+  md:pb-2
+  border-solid
   `)
 |}];
 
@@ -27,23 +52,42 @@ let buttonClass = [%bs.raw
 |}
 ];
 
-let buttonWrapperClass = [%bs.raw {| css(tw`
+let textWrapperBaseClass = [%bs.raw {| css(tw`
   flex
   justify-center
+  w-full
+  text-white
+  text-4xl
+  pt-8
+  md:pt-0
+  md:w-3/4
+  md:pl-16
 `)
 |}];
+
+
+let polishedClass = Utils.Transitions.polishTransitionStyle("all .5s ease 0s");
+
+let textWrapperClass = cx(textWrapperBaseClass, polishedClass);
+let logoClass = cx(logoBaseClass, polishedClass);
 
 let make = _children => {
   ...component,
   render: _self =>
     <div className=introClass>
-      <div>
-        <div className=textClass> {ReasonReact.string("The Most Greg")} </div>
-        <div className=buttonWrapperClass>
-          <a href="#projects" className=buttonClass>
-            <CTA text="View my work" />
-          </a>
-        </div>
+      <div className=introClassInternal>
+        <WaypointGenerator wayKey="logo">
+          ...{(~waypointEntered) => {
+            <div className=cx(logoClass, Utils.Transitions.classTransitionIn(waypointEntered))> {ReasonReact.string("Logo Goes here")} </div>
+          }}
+        </WaypointGenerator>
+        <WaypointGenerator wayKey="maintext">
+          ...{(~waypointEntered) => {
+            <div className=cx(textWrapperClass, Utils.Transitions.classTransitionIn(waypointEntered))>
+              {ReasonReact.string("StackSmithStudio is a software development consultancy and agency working creating clean modern tech solutions for businesses.")}
+            </div>
+          }}
+        </WaypointGenerator>
       </div>
-    </div>,
+    </div>
 };

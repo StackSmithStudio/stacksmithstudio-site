@@ -61,7 +61,7 @@
     "react-helmet": "^5.2.0",
     "react-waypoint": "^8.1.0",
     "reason-apollo": "^0.14.1",
-    "reason-react": "0.4.2",
+    "reason-react": "0.5.3",
     "spectacle": "^5.2.2",
     "spectacle-image-slide": "^1.0.1",
     "spectacle-renderer": "^0.0.3",

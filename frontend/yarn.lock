@@ -12572,7 +12572,14 @@ reason-apollo@^0.14.1:
   version "0.14.1"
   resolved "https://registry.yarnpkg.com/reason-apollo/-/reason-apollo-0.14.1.tgz#9e6962e43e7cb89a17b522b3ef6cfe65451ac37a"
 
-reason-react@0.4.2, reason-react@^0.4.2:
+reason-react@0.5.3:
+  version "0.5.3"
+  resolved "https://registry.yarnpkg.com/reason-react/-/reason-react-0.5.3.tgz#10601809742fd991109ec9d69ad4baf2c3f17540"
+  dependencies:
+    react ">=15.0.0 || >=16.0.0"
+    react-dom ">=15.0.0 || >=16.0.0"
+
+reason-react@^0.4.2:
   version "0.4.2"
   resolved "https://registry.yarnpkg.com/reason-react/-/reason-react-0.4.2.tgz#690d34e3e91a2585cdc5f58384b6c8ff653c32c1"
   dependencies:
