@@ -89,7 +89,6 @@ let make = (~props: PagePropType.props, _children) => {
       }
     >
       <div className=menuAreaClass> <Menu /> </div>
-        
       <div className=introAreaClass>
         <div className=heroAreaClass><div className=heroAreaInnerClass><Intro /></div></div>
       </div>
@@ -97,8 +96,7 @@ let make = (~props: PagePropType.props, _children) => {
         {
           parts
           |> Belt.Array.map(_, edge =>
-              <Part title=edge##node##frontmatter##title body=edge##node##html />
-            )
+              <Part title=edge##node##frontmatter##title body=edge##node##html />)
           |> ReasonReact.array
         }
       </>
@@ -107,7 +105,7 @@ let make = (~props: PagePropType.props, _children) => {
         selectProject={pid => self.send(SelectProject(Some(pid)))}
       /> */
       <Contact />
-      <Footer
+      /* <Footer
         links=props##data##footerLinks##html
         copyright=props##data##copyright##html
       />
@@ -116,7 +114,7 @@ let make = (~props: PagePropType.props, _children) => {
         language=Config.config##siteLanguage
         title=Config.config##siteTitle
         description=Config.config##siteDescription
-      />
+      /> */
     </Modal>;
   },
 };

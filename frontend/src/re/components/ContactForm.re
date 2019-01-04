@@ -7,8 +7,8 @@ let emailClass = [%bs.raw
   {| css(tw`
   flex
   w-full
-  bg-black
-  text-white
+  bg-white
+  text-black
   p-2
   mb-4
 `)
@@ -20,8 +20,8 @@ let messageClass = [%bs.raw
   flex
   w-full
   mb-4
-  bg-black
-  text-white
+  bg-white
+  text-black
   p-2
   h-48
 `)

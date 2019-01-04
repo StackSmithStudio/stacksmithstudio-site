@@ -4,8 +4,8 @@ let css = Css.css;
 let tw = Css.tw;
 
 let contactClass = [%bs.raw {| css(tw`
-  bg-grey-darkest
-  text-grey-lighter
+  bg-blue
+  text-white
   pb-8
 `)
 |}];
@@ -28,8 +28,7 @@ let make = _children => {
   ...component,
   render: _self =>
     <div className=contactClass>
-      <Section title="Contact">
-        <div key="contact-text" className=contactTextClass> {ReasonReact.string("Message me if you want to work with me!")} </div>
+      <Section orientation=Section.CENTER color=Section.WHITE title="Contact">
         <div key="contact-form" className=centerFormClass>
           <ContactForm />
         </div>

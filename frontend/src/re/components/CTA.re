@@ -12,7 +12,7 @@ let buttonClass(color) =
   | DarkGrey =>
   [%bs.raw
     {| css(tw`
-      bg-grey-darkest
+      bg-grey-white
       text-white
       border-solid
       text-xl
