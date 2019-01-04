@@ -59,13 +59,14 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
       prefix = '';
     }
 
-    if (source !== 'parts') {
+    // hmm look at this
+    // if (source !== 'parts') {
       createNodeField({
         node,
         name: `slug`,
         value: slug,
       });
-    }
+    // }
     createNodeField({
       node,
       name: `prefix`,

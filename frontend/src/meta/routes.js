@@ -36,6 +36,18 @@ const routesArray = [
       };
     },
   },
+  {
+    path: "parts",
+    template: pageTemplate, /* shouldn't have a page */
+    context: (edge) => {
+      const slug = edge.node.fields.slug;
+      const source = edge.node.fields.source;
+      return {
+        slug,
+        source,
+      };
+    },
+  },
   {path: "projects"},
   {
     dir: "proposals",

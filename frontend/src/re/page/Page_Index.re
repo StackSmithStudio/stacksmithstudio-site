@@ -66,6 +66,12 @@ let make = (~props: PagePropType.props, _children) => {
     },
   render: self => {
     let projects = props##data##projects##edges;
+    let parts = props##data##parts##edges;
+    Js.log("parts = ");
+    Js.log(parts);
+    let data = props##data;
+    Js.log("data = ");
+    Js.log(data);
     <Modal
       modalSelect={self.state.projectModal}
       closeFn={() => self.send(SelectProject(None)) |> ignore}
@@ -87,11 +93,19 @@ let make = (~props: PagePropType.props, _children) => {
       <div className=introAreaClass>
         <div className=heroAreaClass><div className=heroAreaInnerClass><Intro /></div></div>
       </div>
-      <About />
-      <Projects
+      <>
+        {
+          parts
+          |> Belt.Array.map(_, edge =>
+              <Part title=edge##node##frontmatter##title body=edge##node##html />
+            )
+          |> ReasonReact.array
+        }
+      </>
+      /* <Projects
         projects
         selectProject={pid => self.send(SelectProject(Some(pid)))}
-      />
+      /> */
       <Contact />
       <Footer
         links=props##data##footerLinks##html

@@ -13,8 +13,8 @@ let titleClass = [%bs.raw
   font-bold
   
   w-full
-  lg:w-2/3
-  xl:w-1/3
+  md:w-3/4
+  lg:w-1/2
   `) |}
 ];
 
@@ -40,8 +40,8 @@ let contentWrapperClass = [%bs.raw
 let sectionContentClass = [%bs.raw
 {| css(tw`
   w-full
-  lg:w-2/3
-  xl:w-1/3
+  md:w-3/4
+  lg:w-1/2
 `) |}
 ];
 

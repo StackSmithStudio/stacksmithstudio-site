@@ -4,7 +4,6 @@ let css = Css.css;
 let tw = Css.tw;
 
 let contactClass = [%bs.raw {| css(tw`
-  px-16
   bg-grey-darkest
   text-grey-lighter
   pb-8

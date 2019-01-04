@@ -10,13 +10,6 @@ let aboutClass = [%bs.raw {| css(tw`
 `)
 |}];
 
-let aboutTextClass = [%bs.raw {| css(tw`
-  w-full
-  lg:w-2/3
-  xl:w-1/3
-`)
-|}];
-
 let aboutTextWrapperClass = [%bs.raw {| css(tw`
   text-lg
   mb-16
@@ -24,17 +17,14 @@ let aboutTextWrapperClass = [%bs.raw {| css(tw`
 `)
 |}];
 
-let make = _children => {
+let make = (~title, ~body, _children) => {
   ...component,
   render: _self =>
     <div className=aboutClass>
-      <Section title="We learn your business alongside you.">
+      <Section title=title>
         <div className=aboutTextWrapperClass>
-            {ReasonReact.string("StackSmithStudio cutting edge consulting company working in Brookyn, New York.")}
+          <Bodytext html_=body />
         </div>
-        <div className=aboutTextWrapperClass>
-            {ReasonReact.string("StackSmithStudio helps supports companies optimize business process and getting their brand recognized. Our design and tech are always forward facing. We understand how to work with clients. We companies fully flesh out and conceptialize their domain so they may achieve their vision.")}
-        </div>
-        </Section>
+      </Section>
     </div>,
 };

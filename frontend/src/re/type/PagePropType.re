@@ -74,6 +74,7 @@ type postType = {
 type dataProp = {
   .
   "projects": postType,
+  "parts": postType,
   "posts": postType,
   "post": htmlType,
   "footerLinks": htmlType,

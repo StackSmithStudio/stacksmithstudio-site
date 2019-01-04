@@ -42,5 +42,19 @@ export const query = graphql`
     ) {
       html
     }
+    parts: allMdx(filter: {fields: {source: {eq: "parts"}, slug: {ne: null}}}) {
+      edges {
+        node {
+          html
+          fields {
+            slug
+            prefix
+          }
+          frontmatter {
+            title
+          }
+        }
+      }
+    }
   }
 `;

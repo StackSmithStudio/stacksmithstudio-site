@@ -21,7 +21,7 @@ collections:
   - name: "parts"
     label: "Parts"
     folder: "frontend/src/content/parts"
-    create: false
+    create: true
     fields:
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Name", name: "name", widget: "string"}
