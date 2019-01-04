@@ -1,9 +1,7 @@
 ---
-title: We learn your business alongside you
+title: We embrace change
 name: section 1
 ---
-StackSmithStudio cutting edge consulting company working in Brooklyn, New York.
+The web changes at a breakneck pace.  There are hundreds of different web frameworks and design systems and styles popping into the zeitgeist every year.
 
-- - -
-
-StackSmithStudio supports companies in optimizing business process and getting their brand recognized. Our design and tech are always forward facing. We understand how to work with clients. We work with companies fully flesh out and their domain so they may achieve their vision.
+Most would would stick to learning one tool double down becoming a one technology shop.  At StackSmithStudio we embrace the chaos of change and look at everything available.  StackSmithStudio sees the patterns about whats next for the web and we will help your business be a pioneer.
