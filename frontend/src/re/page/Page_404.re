@@ -8,7 +8,7 @@ let make = (~props: PagePropType.props, _children) => {
   ...component,
   render: _self =>
     <div>
-      <Menu />
+      /* <Menu /> */
       <Article>
         <Heading title="NOT FOUND" />
         /* <Bodytext html_=props##data##notFound##html /> */

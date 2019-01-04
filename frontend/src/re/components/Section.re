@@ -83,12 +83,15 @@ let sectionContentClass = [%bs.raw
 `) |}
 ];
 
+let joinStringsWithSeparator = (listOfString : list(string), separator) =>
+  listOfString
+  |> Belt.List.reduce(_, "", (memo, splitString) => { memo ++ (memo == "" ? "" : separator) ++ splitString });
 
-
+joinStringsWithSeparator(_, "-")
 let make = (~title, ~orientation=LEFT, ~color=BLUE, children) => {
   ...component,
   render: _self =>
-    <div className=sectionClass(color) id={String.lowercase(title)}>
+    <div className=sectionClass(color) id={title |> Utils.String.slugifyId}>
       <div className=titleWrapperClass>
         <div className=titleClass(orientation, color)> {ReasonReact.string(title)} </div>
       </div>

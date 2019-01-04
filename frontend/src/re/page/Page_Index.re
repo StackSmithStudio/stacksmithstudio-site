@@ -88,7 +88,7 @@ let make = (~props: PagePropType.props, _children) => {
         }
       }
     >
-      <div className=menuAreaClass> <Menu /> </div>
+      <div className=menuAreaClass> <Menu parts /> </div>
       <div className=introAreaClass>
         <div className=heroAreaClass><div className=heroAreaInnerClass><Intro /></div></div>
       </div>

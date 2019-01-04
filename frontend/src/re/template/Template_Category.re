@@ -11,7 +11,7 @@ let make = (~props: PagePropType.props, _children) => {
     Js.log("Page_Category props = ");
     Js.log(props);
     <div>
-      <Menu />
+      /* <Menu /> */
       <Article>
         <Heading>
           <span> {ReasonReact.string("Posts in category")} </span>

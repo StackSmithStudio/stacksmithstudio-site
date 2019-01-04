@@ -6,7 +6,7 @@ let make = (~props: PagePropType.props, _children) => {
   ...component,
   render: _self =>
     <div>
-      <Menu />
+      /* <Menu /> */
       <Article>
         <Blog
           items={

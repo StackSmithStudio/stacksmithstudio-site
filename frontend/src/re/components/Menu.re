@@ -45,27 +45,51 @@ let baseLinkClass = [%bs.raw
 let linkClass = cx(baseLinkClass, polishedClass);
 
 
-let make = _children => {
+let make = (~parts, _children) => {
   ...component,
-  render: _self =>
-      <div className=menuClass>
-        <div className=menuInternalClass>
-          <>
-            {
-              Config.menu
-              |> Belt.Array.map(_, menuItem =>
-                  <div>
-                    <a
-                      className=linkClass
-                      key={Type.Config.to_(menuItem)}
-                      href={Type.Config.to_(menuItem)}>
-                      {ReasonReact.string(menuItem##label)}
-                    </a>
-                  </div>
-                )
-              |> ReasonReact.array
-            }
-          </>
-        </div>
+  render: _self => {
+    let parts = Belt.List.fromArray(parts);
+
+    let home = Config.menu |> Belt.List.fromArray |> Belt.List.getBy(_, (menuItem) => menuItem##label == "Home");
+    let contact = Config.menu |> Belt.List.fromArray |> Belt.List.getBy(_, (menuItem) => menuItem##label == "Contact");
+
+    <div className=menuClass>
+      <div className=menuInternalClass>
+        {
+          Belt.Option.mapWithDefault(home, <div />, menuItem => {
+            <a
+              className=linkClass
+              key={Type.Config.to_(menuItem)}
+              href={Type.Config.to_(menuItem)}>
+              {ReasonReact.string(menuItem##label)}
+            </a>
+          })
+        }
+        /* <>
+          {
+            Config.menu
+            |> Belt.Array.map(_, menuItem =>
+                <a
+                  className=linkClass
+                  key={Type.Config.to_(menuItem)}
+                  href={Type.Config.to_(menuItem)}>
+                  {ReasonReact.string(menuItem##label)}
+                </a>
+              )
+            |> ReasonReact.array
+          }
+        </> */
+        {
+          Belt.Option.mapWithDefault(contact, <div />, menuItem => {
+            <a
+              className=linkClass
+              key={Type.Config.to_(menuItem)}
+              href={Type.Config.to_(menuItem)}>
+              {ReasonReact.string(menuItem##label)}
+            </a>
+          })
+        }
       </div>
+    </div>
+  }
 };
