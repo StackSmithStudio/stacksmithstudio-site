@@ -32,19 +32,25 @@ let logoBaseClass = [%bs.raw {| css(tw`
   text-5xl
   pb-8
   w-full
+  md:w-1/4
+  md:pb-2
+  text-center
+  md:text-left
+  flex
+  `)
+|}];
+/* 
+let introSeparatorClass = [%bs.raw {| css(tw`
   border-0
   border-white
   border-b-2
   border-r-0
-  md:w-1/4
   md:border-r-2
   md:border-b-0
   md:pb-2
   border-solid
-  text-center
-  md:text-left
-  `)
-|}];
+  h-full
+`)|}]; */
 
 let buttonClass = [%bs.raw
   {| css(tw`
@@ -69,10 +75,13 @@ let textWrapperBaseClass = [%bs.raw {| css(tw`
 |}];
 
 
-let polishedClass = Utils.Transitions.polishTransitionStyle("all .5s ease 0s");
+let polishedTextClass = Utils.Transitions.polishTransitionStyle("all 3s ease 1s");
+let polishedLogoClass = Utils.Transitions.polishTransitionStyle("all 3s ease .5s");
 
-let textWrapperClass = cx(textWrapperBaseClass, polishedClass);
-let logoClass = cx(logoBaseClass, polishedClass);
+let textWrapperClass = cx(textWrapperBaseClass, polishedTextClass);
+let logoClass = cx(logoBaseClass, polishedLogoClass);
+
+let prevTextStyle = [%bs.raw {| css(tw` text-orange-light invisible `) |}];
 
 let make = _children => {
   ...component,
@@ -81,12 +90,14 @@ let make = _children => {
       <div className=introClassInternal>
         <WaypointGenerator wayKey="logo">
           ...{(~waypointEntered) => {
-            <div className=cx(logoClass, Utils.Transitions.classTransitionIn(waypointEntered))> {ReasonReact.string("Logo Goes here")} </div>
+            <div className=cx(logoClass, Utils.Transitions.classTransitionInWithPrevClass(waypointEntered, prevTextStyle))>
+              {ReasonReact.string("Logo Goes here")}
+            </div>
           }}
         </WaypointGenerator>
         <WaypointGenerator wayKey="maintext">
           ...{(~waypointEntered) => {
-            <div className=cx(textWrapperClass, Utils.Transitions.classTransitionIn(waypointEntered))>
+            <div className=cx(textWrapperClass, Utils.Transitions.classTransitionInWithPrevClass(waypointEntered, prevTextStyle))>
               {ReasonReact.string("StackSmithStudio is a software development consultancy working creating clean modern tech solutions for businesses.")}
             </div>
           }}

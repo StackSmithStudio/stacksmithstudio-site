@@ -11,17 +11,27 @@ type orientation =
 type color =
   | STEEL
   | WHITE;
-let sectionClass = (color) =>
-  cx([%bs.raw {| css(tw`
-    px-16
-    lg:px-0
-    bg-grey-lighter
-    text-lg
-    `)
-  |}],
-  switch(color){
-  | STEEL => [%bs.raw {| css(tw` bg-grey-lighter `) |} ]
-  | WHITE => "bg-steel"
+
+type size =
+  | REGULAR
+  | FULL;
+let sectionClass = (color, size) =>
+  cx(
+    cx([%bs.raw {| css(tw`
+      px-16
+      lg:px-0
+      bg-grey-lighter
+      text-lg
+      `)
+    |}],
+    switch(color){
+    | STEEL => [%bs.raw {| css(tw` bg-grey-lighter `) |} ]
+    | WHITE => "bg-steel"
+    }
+  ),
+  switch(size){
+  | REGULAR => ""
+  | FULL => [%bs.raw {| css(tw` py-16 `) |} ]
   }
 );
 
@@ -87,10 +97,10 @@ let joinStringsWithSeparator = (listOfString : list(string), separator) =>
   |> Belt.List.reduce(_, "", (memo, splitString) => { memo ++ (memo == "" ? "" : separator) ++ splitString });
 
 joinStringsWithSeparator(_, "-")
-let make = (~title, ~orientation=LEFT, ~color=STEEL, children) => {
+let make = (~title, ~orientation=LEFT, ~color=STEEL, ~size=REGULAR, children) => {
   ...component,
   render: _self =>
-    <div className=sectionClass(color) id={title |> Utils.String.slugifyId}>
+    <div className=sectionClass(color, size) id={title |> Utils.String.slugifyId}>
       <div className=titleWrapperClass>
         <div className=titleClass(orientation, color)> {ReasonReact.string(title)} </div>
       </div>
