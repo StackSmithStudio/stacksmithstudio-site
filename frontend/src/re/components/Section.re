@@ -13,7 +13,6 @@ type color =
   | WHITE;
 let sectionClass = (color) =>
   cx([%bs.raw {| css(tw`
-    pt-16
     px-16
     lg:px-0
     bg-grey-lighter

@@ -9,7 +9,6 @@ let aboutClass = [%bs.raw {| css(tw`
 
 let aboutTextWrapperClass = [%bs.raw {| css(tw`
   text-lg
-  pb-16
   text-black
 `)
 |}];

@@ -6,7 +6,7 @@ let tw = Css.tw;
 let contactClass = [%bs.raw {| css(tw`
   bg-blue
   text-white
-  pb-8
+  py-16
 `)
 |}];
 
