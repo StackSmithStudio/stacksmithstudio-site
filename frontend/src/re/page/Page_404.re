@@ -11,12 +11,12 @@ let make = (~props: PagePropType.props, _children) => {
       <Menu />
       <Article>
         <Heading title="NOT FOUND" />
-        <Bodytext html_=props##data##notFound##html />
+        /* <Bodytext html_=props##data##notFound##html /> */
       </Article>
-      <Footer
+      /* <Footer
         links=props##data##footerLinks##html
         copyright=props##data##copyright##html
-      />
+      /> */
       <Seo
         url=Config.config##siteUrl
         language=Config.config##siteLanguage

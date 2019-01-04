@@ -46,10 +46,10 @@ let make = (~props: PagePropType.props, _children) => {
           }
         />
       </Article>
-      <Footer
+      /* <Footer
         links=props##data##footerLinks##html
         copyright=props##data##copyright##html
-      />
+      /> */
       <Seo
         url={
           Config.config##siteUrl

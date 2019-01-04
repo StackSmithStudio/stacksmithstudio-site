@@ -42,6 +42,8 @@ let logoBaseClass = [%bs.raw {| css(tw`
   md:border-b-0
   md:pb-2
   border-solid
+  text-center
+  md:text-left
   `)
 |}];
 
@@ -62,6 +64,8 @@ let textWrapperBaseClass = [%bs.raw {| css(tw`
   md:pt-0
   md:w-3/4
   md:pl-16
+  text-center
+  md:text-left
 `)
 |}];
 

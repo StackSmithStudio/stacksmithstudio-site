@@ -16,10 +16,10 @@ let make = (~props: PagePropType.props, _children) => {
           metaIcons=PagePropType.metaIcons
         />
       </Article>
-      <Footer
+      /* <Footer
         links=props##data##footerLinks##html
         copyright=props##data##copyright##html
-      />
+      /> */
       <Seo
         url=Config.config##siteUrl
         language=Config.config##siteLanguage

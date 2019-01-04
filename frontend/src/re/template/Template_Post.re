@@ -41,16 +41,16 @@ let make = (~props: PagePropType.props, _children) => {
           prev=props##pageContext##prev
           icons=nextPrevIcons
         />
-        <Author html_=props##data##author##html />
+        /* <Author html_=props##data##author##html /> */
         <Comments
           slug=props##data##post##fields##slug
           siteUrl=Config.config##siteUrl
         />
       </Article>
-      <Footer
+      /* <Footer
         links=props##data##footerLinks##html
         copyright=props##data##copyright##html
-      />
+      /> */
       <Seo
         url={Config.config##siteUrl ++ props##data##post##fields##slug}
         language=Config.config##siteLanguage

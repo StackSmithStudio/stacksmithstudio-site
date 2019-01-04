@@ -17,10 +17,10 @@ let make = (~props: PagePropType.props, _children) => {
         <Heading title=props##data##page##frontmatter##title />
         <Bodytext html_=props##data##page##html />
       </Article>
-      <Footer
+      /* <Footer
         links=props##data##footerLinks##html
         copyright=props##data##copyright##html
-      />
+      /> */
       <Seo
         url={Config.config##siteUrl ++ props##data##page##fields##slug}
         language=Config.config##siteLanguage
