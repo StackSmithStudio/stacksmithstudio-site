@@ -40,7 +40,7 @@ let make = _children => {
           size=LG
           label="Who is Greg?"
           copy=Helper_Me.about
-          comp={<div className={jpgClass ++ " bg-greg-image"} />}
+          comp={<div className={jpgClass ++ " bg-steel"} />}
         />
         <a href="#contact" className=buttonClass >
           <CTA text="Contact Me" color=White />

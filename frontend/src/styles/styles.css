@@ -3,6 +3,10 @@
   background-image: url("/greg.jpg");
 }
 
+.bg-steel {
+  background-image: url("/steel.jpg");
+}
+
 html, body {
   min-height: 100%;
   height: 100%;

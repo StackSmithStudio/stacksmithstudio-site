@@ -9,7 +9,6 @@ let menuClass = [%bs.raw
     flex
     w-full
     h-full
-    bg-blue
     py-6
     justify-center
   `) |}
@@ -53,7 +52,7 @@ let make = (~parts, _children) => {
     let home = Config.menu |> Belt.List.fromArray |> Belt.List.getBy(_, (menuItem) => menuItem##label == "Home");
     let contact = Config.menu |> Belt.List.fromArray |> Belt.List.getBy(_, (menuItem) => menuItem##label == "Contact");
 
-    <div className=menuClass>
+    <div className=cx(menuClass, "bg-steel")>
       <div className=menuInternalClass>
         {
           Belt.Option.mapWithDefault(home, <div />, menuItem => {

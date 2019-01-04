@@ -11,7 +11,6 @@ let introClass = [%bs.raw
     items-center
     w-full
     h-full
-    bg-blue
     pb-16
   `) |}
 ];
@@ -78,7 +77,7 @@ let logoClass = cx(logoBaseClass, polishedClass);
 let make = _children => {
   ...component,
   render: _self =>
-    <div className=introClass>
+    <div className=cx(introClass, "bg-steel")>
       <div className=introClassInternal>
         <WaypointGenerator wayKey="logo">
           ...{(~waypointEntered) => {
@@ -88,7 +87,7 @@ let make = _children => {
         <WaypointGenerator wayKey="maintext">
           ...{(~waypointEntered) => {
             <div className=cx(textWrapperClass, Utils.Transitions.classTransitionIn(waypointEntered))>
-              {ReasonReact.string("StackSmithStudio is a software development consultancy and agency working creating clean modern tech solutions for businesses.")}
+              {ReasonReact.string("StackSmithStudio is a software development consultancy working creating clean modern tech solutions for businesses.")}
             </div>
           }}
         </WaypointGenerator>

@@ -1,10 +1,10 @@
 let component = ReasonReact.statelessComponent("Contact");
 
 let css = Css.css;
+let cx = Css.cx;
 let tw = Css.tw;
 
 let contactClass = [%bs.raw {| css(tw`
-  bg-blue
   text-white
   py-16
 `)
@@ -27,7 +27,7 @@ let centerFormClass = [%bs.raw {| css(tw`
 let make = _children => {
   ...component,
   render: _self =>
-    <div className=contactClass>
+    <div className=cx(contactClass, "bg-steel")>
       <Section orientation=Section.CENTER color=Section.WHITE title="Contact">
         <div key="contact-form" className=centerFormClass>
           <ContactForm />

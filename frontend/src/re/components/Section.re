@@ -9,7 +9,7 @@ type orientation =
   | CENTER;
 
 type color =
-  | BLUE
+  | STEEL
   | WHITE;
 let sectionClass = (color) =>
   cx([%bs.raw {| css(tw`
@@ -20,8 +20,8 @@ let sectionClass = (color) =>
     `)
   |}],
   switch(color){
-  | BLUE => [%bs.raw {| css(tw` bg-grey-lighter `) |} ]
-  | WHITE => [%bs.raw {| css(tw` bg-blue `) |} ]
+  | STEEL => [%bs.raw {| css(tw` bg-grey-lighter `) |} ]
+  | WHITE => "bg-steel"
   }
 );
 
@@ -34,7 +34,7 @@ let orientationSwitch = (color) => {
 
 let colorSwitch = (orientation) => {
   switch(orientation){
-  | BLUE => [%bs.raw {| css(tw` text-blue `) |} ]
+  | STEEL => [%bs.raw {| css(tw` text-grey-darker `) |} ]
   | WHITE => [%bs.raw {| css(tw` text-white no-underline `) |} ]
   }
 };
@@ -60,7 +60,7 @@ let titleWrapperClass = [%bs.raw
   flex
   justify-center
   underline
-  text-blue
+  text-grey-darker
   mb-8
   `) |}
 ];
@@ -87,7 +87,7 @@ let joinStringsWithSeparator = (listOfString : list(string), separator) =>
   |> Belt.List.reduce(_, "", (memo, splitString) => { memo ++ (memo == "" ? "" : separator) ++ splitString });
 
 joinStringsWithSeparator(_, "-")
-let make = (~title, ~orientation=LEFT, ~color=BLUE, children) => {
+let make = (~title, ~orientation=LEFT, ~color=STEEL, children) => {
   ...component,
   render: _self =>
     <div className=sectionClass(color) id={title |> Utils.String.slugifyId}>
