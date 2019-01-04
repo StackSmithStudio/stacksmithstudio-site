@@ -13,7 +13,7 @@ let aboutTextWrapperClass = [%bs.raw {| css(tw`
 `)
 |}];
 
-let make = (~title, ~body, ~orientation=Section.LEFT, ~color=Section.BLUE, _children) => {
+let make = (~title, ~body, ~orientation=Section.LEFT, ~color=Section.STEEL, _children) => {
   ...component,
   render: _self =>
     <div className=aboutClass>
