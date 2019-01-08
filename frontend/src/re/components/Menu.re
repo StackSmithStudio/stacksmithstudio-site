@@ -28,7 +28,6 @@ let baseLinkClass = [%bs.raw
   mx-6
   normal-case
   text-white
-  text-xl
   no-underline
   hover:text-white
 
@@ -52,7 +51,7 @@ let make = (~parts, _children) => {
     let home = Config.menu |> Belt.List.fromArray |> Belt.List.getBy(_, (menuItem) => menuItem##label == "Home");
     let contact = Config.menu |> Belt.List.fromArray |> Belt.List.getBy(_, (menuItem) => menuItem##label == "Contact");
 
-    <div className=cx(menuClass, "bg-steel")>
+    <div className=menuClass>
       <div className=menuInternalClass>
         {
           Belt.Option.mapWithDefault(home, <div />, menuItem => {

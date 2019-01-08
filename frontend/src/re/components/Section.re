@@ -6,78 +6,98 @@ let tw = Css.tw;
 
 type orientation =
   | LEFT
+  | RIGHT
   | CENTER;
 
 type color =
   | STEEL
+  | GREY
   | WHITE;
+
+let colors = [WHITE, STEEL, GREY];
+let orientations = [LEFT, CENTER, RIGHT];
 
 type size =
   | REGULAR
   | FULL;
-let sectionClass = (color, size) =>
-  cx(
-    cx([%bs.raw {| css(tw`
-      px-16
-      lg:px-0
-      bg-grey-lighter
-      text-lg
-      `)
-    |}],
-    switch(color){
-    | STEEL => [%bs.raw {| css(tw` bg-grey-lighter `) |} ]
-    | WHITE => "bg-steel"
-    }
-  ),
-  switch(size){
-  | REGULAR => ""
-  | FULL => [%bs.raw {| css(tw` py-16 `) |} ]
-  }
-);
-
-let orientationSwitch = (color) => {
-  switch(color){
-  | LEFT => [%bs.raw {| css(tw` flex justify-start`) |} ]
-  | CENTER => [%bs.raw {| css(tw` flex justify-center`) |} ]
-  }
-};
 
 let colorSwitch = (orientation) => {
   switch(orientation){
-  | STEEL => [%bs.raw {| css(tw` text-grey-darker `) |} ]
-  | WHITE => [%bs.raw {| css(tw` text-white no-underline `) |} ]
+  | STEEL => cx([%bs.raw {| css(tw`  text-white `) |} ], "bg-steel")
+  | GREY => [%bs.raw {| css(tw` text-grey-darker bg-grey-light `) |} ]
+  | WHITE => [%bs.raw {| css(tw` text-grey-darker bg-grey-lighter `) |} ]
   }
 };
 
+let sectionWrapper = (color, size) =>
+  cx(
+    cx(
+      [%bs.raw {| css(tw`
+        lg:px-0
+        pt-32
+        bg-grey-lighter
+        `)
+      |}],
+    switch(size){
+    | REGULAR => ""
+    | FULL => [%bs.raw {| css(tw` py-16 `) |} ]
+    }
+  ),
+  colorSwitch(color)
+);
 
+let sectionFlex = 
+  [%bs.raw {| css(tw`
+    flex
+    mx-5
+    `)
+  |}]
+;
 
-let titleClass = (orientation: orientation, color: color) => 
-  cx(cx(
-    [%bs.raw
-      {| css(tw`
-      text-5xl
-      font-bold
-      
-      w-full
-      md:w-2/3
-      lg:w-1/2
-      xl:w-1/3
-      `) |}
-    ], colorSwitch(color)), orientationSwitch(orientation));
+let sectionClass = (orientation) =>
+  switch(orientation){
+  | _ =>  [%bs.raw {| css(tw`  mt-12 w-11/12 `)|}]
+  };
+
+let sectionGutter = [%bs.raw {| css(tw` w-1/12 `)|}];
+
+let sectionGutterLeft = (orientation) =>
+  switch(orientation){
+  | RIGHT =>  sectionGutter
+  | _ => sectionGutter
+  };
+
+let sectionGutterRight = (orientation) =>
+  switch(orientation){
+  | LEFT => sectionGutter
+  | _ => [%bs.raw {| css(tw` hidden `)|}]
+  };
+  
+
+let titleClass = 
+  [%bs.raw
+    {| css(tw`
+    pin-l
+    w-24
+    absolute
+    text-xs
+    `) |}
+  ];
 
 let titleWrapperClass = [%bs.raw
   {| css(tw`
-  flex
-  justify-center
-  underline
-  text-grey-darker
+  relative
+  h-1
   mb-8
+  w-11/12
+  italic
   `) |}
 ];
 
 let contentWrapperClass = [%bs.raw
   {| css(tw`
   flex
+  flex-wrap
   justify-center
   `) |}
 ];
@@ -87,8 +107,6 @@ let sectionContentClass = [%bs.raw
 {| css(tw`
   w-full
   md:w-2/3
-  lg:w-1/2
-  xl:w-1/3
 `) |}
 ];
 
@@ -97,15 +115,36 @@ let joinStringsWithSeparator = (listOfString : list(string), separator) =>
   |> Belt.List.reduce(_, "", (memo, splitString) => { memo ++ (memo == "" ? "" : separator) ++ splitString });
 
 joinStringsWithSeparator(_, "-")
-let make = (~title, ~orientation=LEFT, ~color=STEEL, ~size=REGULAR, children) => {
+let make = (~title, ~orientation=CENTER, ~color=STEEL, ~size=REGULAR, ~image="", children) => {
   ...component,
   render: _self =>
-    <div className=sectionClass(color, size) id={title |> Utils.String.slugifyId}>
-      <div className=titleWrapperClass>
-        <div className=titleClass(orientation, color)> {ReasonReact.string(title)} </div>
+    <div className=sectionWrapper(color, size)>
+      <div className=sectionFlex>
+        <div className=sectionGutter />
+        <div className=titleWrapperClass>
+          <div className=cx(titleClass, "rotate-270")> {ReasonReact.string(title)} </div>
+        </div>
       </div>
-      <div className=contentWrapperClass>
-        <div className=sectionContentClass>{children |> ReasonReact.array}</div>
+      <div className=sectionFlex>
+        <div className=sectionGutter />
+        <div className=sectionClass(orientation) id={title |> Utils.String.slugifyId}>
+          <div className=contentWrapperClass>
+            {
+              switch(orientation) {
+              | LEFT => <img src=image/>
+              | _ => <div/>
+              }
+            }
+            <div className=sectionContentClass>{children |> ReasonReact.array}</div>
+            {
+              switch(orientation) {
+              | RIGHT => <img src=image/>
+              | _ => <div/>
+              }
+            }
+          </div>
+        </div>
+        <div className=sectionGutterRight(orientation) />
       </div>
-    </div>,
+    </div>
 };

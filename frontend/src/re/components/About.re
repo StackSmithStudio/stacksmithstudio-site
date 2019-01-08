@@ -9,9 +9,9 @@ let aboutClass = [%bs.raw {| css(tw`
 
 let aboutTextWrapperClass = [%bs.raw {| css(tw`
   text-lg
-  text-black
 `)
 |}];
+
 
 let make = (~title, ~body, ~orientation=Section.LEFT, ~color=Section.STEEL, _children) => {
   ...component,
@@ -19,7 +19,7 @@ let make = (~title, ~body, ~orientation=Section.LEFT, ~color=Section.STEEL, _chi
     <div className=aboutClass>
       <Section title=title orientation color>
         <div className=aboutTextWrapperClass>
-          <Bodytext html_=body />
+          <Bodytext html_=body className="markdownClass" />
         </div>
       </Section>
     </div>,

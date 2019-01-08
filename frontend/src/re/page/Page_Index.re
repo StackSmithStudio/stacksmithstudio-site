@@ -4,6 +4,7 @@
 [%bs.raw {|require('tailwindcss/tailwind.css')|}];
 
 let css = Css.css;
+let cx = Css.cx;
 let tw = Css.tw;
 let introAreaCss = [%bs.raw
   {| css(tw`
@@ -15,8 +16,7 @@ let introAreaCss = [%bs.raw
 
 let introAreaClass = [%bs.raw
   {| css(tw`
-    min-h-screen
-    h-64
+    h-screen
     flex
     flex-col
   `) |}
@@ -42,15 +42,16 @@ let heroAreaInnerClass = [%bs.raw
 /* https://stackoverflow.com/a/33644245/923636 */
 /* https://bugs.webkit.org/show_bug.cgi?id=137730 */
 let menuAreaClass = [%bs.raw {| css(tw`
-  sticky
+  fixed
   pin-t	
   z-10
 `) |}];
 
 let partsAreaClass = [%bs.raw {| css(tw`
   pt-16
-  bg-grey-lighter
 `) |}];
+
+
 
 type projectType = option(string);
 type state = {projectModal: projectType};
@@ -93,14 +94,25 @@ let make = (~props: PagePropType.props, _children) => {
         <div className=heroAreaClass><div className=heroAreaInnerClass><Intro /></div></div>
       </div>
 
-      <div className=partsAreaClass>
         {
           parts
-          |> Belt.Array.map(_, edge =>
-              <Part title=edge##node##frontmatter##title body=edge##node##html />)
+          |> Belt.Array.mapWithIndex(_, (index, edge) =>
+              <Part
+                title=edge##node##frontmatter##title
+                body=edge##node##html
+                color=(
+                  Section.colors
+                  |> Belt.List.get(_, index)
+                  |> Belt.Option.getWithDefault(_, Section.WHITE)
+                )
+                orientation=(
+                  Section.orientations
+                  |> Belt.List.get(_, index)
+                  |> Belt.Option.getWithDefault(_, Section.CENTER)
+                )
+              />)
           |> ReasonReact.array
         }
-      </div>
       /* <Projects
         projects
         selectProject={pid => self.send(SelectProject(Some(pid)))}

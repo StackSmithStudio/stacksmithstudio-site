@@ -88,17 +88,17 @@ let make = _children => {
   render: _self =>
     <div className=cx(introClass, "bg-steel")>
       <div className=introClassInternal>
-        <WaypointGenerator wayKey="logo">
+        /* <WaypointGenerator wayKey="logo">
           ...{(~waypointEntered) => {
             <div className=cx(logoClass, Utils.Transitions.classTransitionInWithPrevClass(waypointEntered, prevTextStyle))>
               {ReasonReact.string("Logo Goes here")}
             </div>
           }}
-        </WaypointGenerator>
+        </WaypointGenerator> */
         <WaypointGenerator wayKey="maintext">
           ...{(~waypointEntered) => {
             <div className=cx(textWrapperClass, Utils.Transitions.classTransitionInWithPrevClass(waypointEntered, prevTextStyle))>
-              {ReasonReact.string("StackSmithStudio is a software development consultancy working creating clean modern tech solutions for businesses.")}
+              {ReasonReact.string("StackSmithStudio")}
             </div>
           }}
         </WaypointGenerator>

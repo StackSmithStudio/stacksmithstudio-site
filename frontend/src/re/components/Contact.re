@@ -18,6 +18,7 @@ let contactTextClass = [%bs.raw {| css(tw`
 |}];
 
 let centerFormClass = [%bs.raw {| css(tw`
+  w-full
   flex
   justify-center
 `)
@@ -27,7 +28,7 @@ let make = _children => {
   ...component,
   render: _self =>
     <div className=cx(contactClass, "bg-steel")>
-      <Section orientation=Section.CENTER color=Section.WHITE size=Section.FULL title="Contact">
+      <Section orientation=Section.CENTER color=Section.STEEL size=Section.FULL title="Contact">
         <div key="contact-form" className=centerFormClass>
           <ContactForm />
         </div>
