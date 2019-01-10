@@ -6,6 +6,9 @@ type breakpoint =
   | XL;
 
 /* THIS CAN BE PASSED AS CONFIGURABLE TO MODULE */
+
+let toClass: (string) => string = [%bs.raw {| function (cssString) { return css`${cssString}`; } |} ];
+
 let breakpointToInt = (breakpoint : breakpoint) =>
   switch(breakpoint){
   | SM => 576
@@ -16,10 +19,9 @@ let breakpointToInt = (breakpoint : breakpoint) =>
 
 let breakpointToMediaQuery = (bp) => "@media (min-width: " ++ (bp |> breakpointToInt |> string_of_int) ++ "px)";
 
-let cssConvert: (string) => string = [%bs.raw {| function (cssString) { return css`${cssString}`; } |} ];
 
 let cssToEmotionMediaQuery = (breakpoint: breakpoint, cssString: string) =>
-  (breakpointToMediaQuery(breakpoint) ++ " { " ++ cssString ++ "} ") |> cssConvert;
+  (breakpointToMediaQuery(breakpoint) ++ " { " ++ cssString ++ "} ") |> toClass;
 
 /*
 EXAMPLE:

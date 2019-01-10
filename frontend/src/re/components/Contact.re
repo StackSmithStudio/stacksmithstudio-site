@@ -24,14 +24,12 @@ let centerFormClass = [%bs.raw {| css(tw`
 `)
 |}];
 
-let make = _children => {
+let make = (~splashCss, ~mainCss, ~rowClass, _children) => {
   ...component,
   render: _self =>
-    <div className=cx(contactClass, "bg-steel")>
-      <Section orientation=Section.CENTER color=Section.STEEL size=Section.FULL title="Contact">
-        <div key="contact-form" className=centerFormClass>
-          <ContactForm />
-        </div>
-      </Section>
-    </div>,
+    <Section orientation=Section.CENTER color=Section.STEEL size=Section.FULL title="Contact" splashCss mainCss rowClass>
+      <div key="contact-form" className=centerFormClass>
+        <ContactForm />
+      </div>
+    </Section>
 };

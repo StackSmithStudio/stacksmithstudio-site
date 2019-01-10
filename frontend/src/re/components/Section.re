@@ -56,7 +56,7 @@ let sectionFlex =
 
 let sectionClass = (orientation) =>
   switch(orientation){
-  | _ =>  [%bs.raw {| css(tw`  mt-12 w-11/12 `)|}]
+  | _ =>  [%bs.raw {| css(tw`  mt-12`)|}]
   };
 
 let sectionGutter = [%bs.raw {| css(tw` w-1/12 `)|}];
@@ -89,7 +89,6 @@ let titleWrapperClass = [%bs.raw
   relative
   h-1
   mb-8
-  w-11/12
   italic
   `) |}
 ];
@@ -115,20 +114,19 @@ let joinStringsWithSeparator = (listOfString : list(string), separator) =>
   |> Belt.List.reduce(_, "", (memo, splitString) => { memo ++ (memo == "" ? "" : separator) ++ splitString });
 
 joinStringsWithSeparator(_, "-")
-let make = (~title, ~orientation=CENTER, ~color=STEEL, ~size=REGULAR, ~image="", children) => {
+let make = (~title, ~orientation=CENTER, ~color=STEEL, ~size=REGULAR, ~image="", ~splashCss, ~mainCss, ~rowClass, children) => {
   ...component,
   render: _self =>
-    <div className=sectionWrapper(color, size)>
-      <div className=sectionFlex>
-        <div className=sectionGutter />
+    <>
+      <div className=cx(cx(sectionWrapper(color, size), splashCss), rowClass)/>
+      /* <div className=sectionFlex>
         <div className=titleWrapperClass>
           <div className=cx(titleClass, "rotate-270")> {ReasonReact.string(title)} </div>
         </div>
-      </div>
-      <div className=sectionFlex>
-        <div className=sectionGutter />
+      </div> */
+      <div className=cx(mainCss, rowClass)>
         <div className=sectionClass(orientation) id={title |> Utils.String.slugifyId}>
-          <div className=contentWrapperClass>
+          <div className=cx(contentWrapperClass, "main")>
             {
               switch(orientation) {
               | LEFT => <img src=image/>
@@ -144,7 +142,7 @@ let make = (~title, ~orientation=CENTER, ~color=STEEL, ~size=REGULAR, ~image="",
             }
           </div>
         </div>
-        <div className=sectionGutterRight(orientation) />
+        /* <div className=sectionGutterRight(orientation) /> */
       </div>
-    </div>
+    </>
 };

@@ -42,9 +42,9 @@ let heroAreaInnerClass = [%bs.raw
 /* https://stackoverflow.com/a/33644245/923636 */
 /* https://bugs.webkit.org/show_bug.cgi?id=137730 */
 let menuAreaClass = [%bs.raw {| css(tw`
-  fixed
   pin-t	
   z-10
+  bg-red
 `) |}];
 
 let partsAreaClass = [%bs.raw {| css(tw`
@@ -52,6 +52,11 @@ let partsAreaClass = [%bs.raw {| css(tw`
 `) |}];
 
 
+let gridClass = Utils.CssGrid.gridClass;
+
+let mediaQueryClassName = Utils.Css.cssToEmotionMediaQuery(Utils.Css.SM, "
+  background-color: red;
+");
 
 type projectType = option(string);
 type state = {projectModal: projectType};
@@ -61,6 +66,8 @@ type action =
   | SelectProject(projectType);
 
 let component = ReasonReact.reducerComponent("Page_Index");
+
+let addOne = (a) => a + 1;
 
 let make = (~props: PagePropType.props, _children) => {
   ...component,
@@ -89,45 +96,57 @@ let make = (~props: PagePropType.props, _children) => {
         }
       }
     >
-      <div className=menuAreaClass> <Menu parts /> </div>
-      <div className=introAreaClass>
-        <div className=heroAreaClass><div className=heroAreaInnerClass><Intro /></div></div>
+      <div className=gridClass>
+        <div className=cx(cx(menuAreaClass, Utils.CssGrid.splashClass), Utils.CssGrid.menuRowClass)> <Menu parts /> </div>
+        <div className=cx(cx(introAreaClass, Utils.CssGrid.splashClass), Utils.CssGrid.rowIntroClass)>
+          <div className=heroAreaClass>
+            <div className=heroAreaInnerClass>
+              <Intro />
+            </div>
+          </div>
+        </div>
+          {
+            parts
+            |> Belt.Array.mapWithIndex(_, (index, edge) =>
+                <Part
+                  rowClass=Utils.CssGrid.rowClassName(index |> addOne)
+                  splashCss=Utils.CssGrid.splashClass
+                  mainCss=Utils.CssGrid.proseClass
+                  title=edge##node##frontmatter##title
+                  body=edge##node##html
+                  color=(
+                    Section.colors
+                    |> Belt.List.get(_, index)
+                    |> Belt.Option.getWithDefault(_, Section.WHITE)
+                  )
+                  orientation=(
+                    Section.orientations
+                    |> Belt.List.get(_, index)
+                    |> Belt.Option.getWithDefault(_, Section.CENTER)
+                  )
+                />)
+            |> ReasonReact.array
+          }
+        /* <Projects
+          projects
+          selectProject={pid => self.send(SelectProject(Some(pid)))}
+        /> */
+        <Contact
+          rowClass=(parts |> Belt.List.fromArray |> Belt.List.length |> addOne |> Utils.CssGrid.rowClassName)
+          splashCss=Utils.CssGrid.splashClass
+          mainCss=Utils.CssGrid.proseClass
+        />
+        /* <Footer
+          links=props##data##footerLinks##html
+          copyright=props##data##copyright##html
+        />
+        <Seo
+          url=Config.config##siteUrl
+          language=Config.config##siteLanguage
+          title=Config.config##siteTitle
+          description=Config.config##siteDescription
+        /> */
       </div>
-
-        {
-          parts
-          |> Belt.Array.mapWithIndex(_, (index, edge) =>
-              <Part
-                title=edge##node##frontmatter##title
-                body=edge##node##html
-                color=(
-                  Section.colors
-                  |> Belt.List.get(_, index)
-                  |> Belt.Option.getWithDefault(_, Section.WHITE)
-                )
-                orientation=(
-                  Section.orientations
-                  |> Belt.List.get(_, index)
-                  |> Belt.Option.getWithDefault(_, Section.CENTER)
-                )
-              />)
-          |> ReasonReact.array
-        }
-      /* <Projects
-        projects
-        selectProject={pid => self.send(SelectProject(Some(pid)))}
-      /> */
-      <Contact />
-      /* <Footer
-        links=props##data##footerLinks##html
-        copyright=props##data##copyright##html
-      />
-      <Seo
-        url=Config.config##siteUrl
-        language=Config.config##siteLanguage
-        title=Config.config##siteTitle
-        description=Config.config##siteDescription
-      /> */
     </Modal>;
   },
 };

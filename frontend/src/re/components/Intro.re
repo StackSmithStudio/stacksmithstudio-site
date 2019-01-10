@@ -68,7 +68,6 @@ let textWrapperBaseClass = [%bs.raw {| css(tw`
   pt-8
   md:pt-0
   md:w-3/4
-  md:pl-16
   text-center
   md:text-left
 `)

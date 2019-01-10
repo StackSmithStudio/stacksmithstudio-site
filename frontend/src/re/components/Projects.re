@@ -54,7 +54,7 @@ let make = (~projects, ~selectProject, _children) => {
   ...component,
   render: _self =>
     <div className=projectsClass>
-      <Section title="Projects">
+      /* <Section title="Projects">
         <WaypointGenerator wayKey="projects">
           ...{(~waypointEntered) => {
             <div key="projects" className=(cx(projectsContainerClass, Utils.Transitions.classTransitionIn(waypointEntered)))>
@@ -75,6 +75,6 @@ let make = (~projects, ~selectProject, _children) => {
             </div>
           }}
         </WaypointGenerator>
-      </Section>
+      </Section> */
     </div>,
 };
