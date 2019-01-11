@@ -21,11 +21,20 @@ type size =
   | REGULAR
   | FULL;
 
-let colorSwitch = (orientation) => {
-  switch(orientation){
-  | STEEL => cx([%bs.raw {| css(tw`  text-white `) |} ], "bg-steel")
-  | GREY => [%bs.raw {| css(tw` text-grey-darker bg-grey-light `) |} ]
-  | WHITE => [%bs.raw {| css(tw` text-grey-darker bg-grey-lighter `) |} ]
+let colorTextSwitch = (color) => {
+  /* switch(color){
+  | STEEL => [%bs.raw {| css(tw` text-white `) |} ]
+  | GREY => [%bs.raw {| css(tw` text-grey-darker `) |} ]
+  | WHITE => [%bs.raw {| css(tw` text-grey-darker `) |} ]
+  }; */
+  [%bs.raw {| css(tw`text-red`) |}];
+};
+
+let colorSwitch = (color) => {
+  switch(color){
+  | STEEL => cx(colorTextSwitch(color), "bg-charcoal")
+  | GREY => cx(colorTextSwitch(color), [%bs.raw {| css(tw` bg-grey-light `) |} ])
+  | WHITE => cx(colorTextSwitch(color), [%bs.raw {| css(tw` bg-grey-lighter `) |} ])
   }
 };
 
@@ -34,7 +43,6 @@ let sectionWrapper = (color, size) =>
     cx(
       [%bs.raw {| css(tw`
         lg:px-0
-        pt-32
         bg-grey-lighter
         `)
       |}],
@@ -105,7 +113,6 @@ let contentWrapperClass = [%bs.raw
 let sectionContentClass = [%bs.raw
 {| css(tw`
   w-full
-  md:w-2/3
 `) |}
 ];
 
@@ -126,14 +133,16 @@ let make = (~title, ~orientation=CENTER, ~color=STEEL, ~size=REGULAR, ~image="",
       </div> */
       <div className=cx(mainCss, rowClass)>
         <div className=sectionClass(orientation) id={title |> Utils.String.slugifyId}>
-          <div className=cx(contentWrapperClass, "main")>
+          <div className=contentWrapperClass>
             {
               switch(orientation) {
               | LEFT => <img src=image/>
               | _ => <div/>
               }
             }
-            <div className=sectionContentClass>{children |> ReasonReact.array}</div>
+            <div className=cx(colorTextSwitch(color), sectionContentClass)>
+              {children |> ReasonReact.array}
+            </div>
             {
               switch(orientation) {
               | RIGHT => <img src=image/>

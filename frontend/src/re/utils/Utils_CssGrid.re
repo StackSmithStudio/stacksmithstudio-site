@@ -1,8 +1,10 @@
 let fullName = "full";
 let mainName = "main";
 
-let numberRows = 14;
-let gridClass =
+let numColumns = 14;
+
+let gridClass = (numMainRows) =>
+ /* need this until subgrid */
   Utils_Css.toClass("
     display: grid;
 
@@ -16,12 +18,16 @@ let gridClass =
       [" ++ fullName ++ "-end];
 
     grid-template-rows:
-      [menu]
+      [menu-start]
       4rem
-      [intro]
-      100vh
-      repeat(auto-fill, [row] 100vh)
-      [footer];
+      [menu-end intro]
+      minmax(32rem, 100vh)
+      "
+      ++ "repeat(" ++ string_of_int(numMainRows) ++ ", [row-start] minmax(32rem, auto) [row-end])" ++
+      "
+      [footer-start]
+      minmax(32rem, 100vh)
+      [footer-end];
 
     & > * {
       grid-column: "  ++ fullName ++ ";
@@ -35,7 +41,7 @@ let menuRowClass = Utils_Css.toClass("
 ");
 
 let rowClassName = (row) => Utils_Css.toClass("
-  grid-row: row " ++ string_of_int(row) ++ ";
+  grid-row: row-start " ++ string_of_int(row) ++ ";
 ");
 
 let rowIntroClass = Utils_Css.toClass("
@@ -43,6 +49,14 @@ let rowIntroClass = Utils_Css.toClass("
     grid-row: intro;
   }
 ");
+
+let rowFooterClass = Utils_Css.toClass("
+  {
+    grid-row: footer;
+  }
+");
+
+
 let proseClass = Utils_Css.toClass("
     {
       grid-column: " ++ mainName ++ ";

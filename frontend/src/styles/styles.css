@@ -3,8 +3,24 @@
   background-image: url("/greg.jpg");
 }
 
-.bg-steel {
-  background-image: url("/steel.jpg");
+.bg-charcoal {
+  background-color: #232525;
+}
+
+.bg-gold {
+  background-color: #d4af37;
+}
+
+.bg-cyan {
+  background-color: #00cfae;
+}
+
+.bg-white {
+  background-color: #dfe0df;
+}
+
+.bg-burgundy {
+  background-color: #402e32;
 }
 
 .rotate-270{

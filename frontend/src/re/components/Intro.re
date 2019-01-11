@@ -82,11 +82,12 @@ let logoClass = cx(logoBaseClass, polishedLogoClass);
 
 let prevTextStyle = [%bs.raw {| css(tw` text-orange-light invisible `) |}];
 
-let make = _children => {
+let make = (~splashClass, ~rowClass, _children) => {
   ...component,
   render: _self =>
-    <div className=cx(introClass, "bg-steel")>
-      <div className=introClassInternal>
+    <>
+      <div className=cx(cx(cx(introClass, rowClass), "bg-charcoal"), splashClass)/>
+      <div className=cx(rowClass, introClassInternal)>
         /* <WaypointGenerator wayKey="logo">
           ...{(~waypointEntered) => {
             <div className=cx(logoClass, Utils.Transitions.classTransitionInWithPrevClass(waypointEntered, prevTextStyle))>
@@ -96,11 +97,11 @@ let make = _children => {
         </WaypointGenerator> */
         <WaypointGenerator wayKey="maintext">
           ...{(~waypointEntered) => {
-            <div className=cx(textWrapperClass, Utils.Transitions.classTransitionInWithPrevClass(waypointEntered, prevTextStyle))>
+            <div className=cx(cx(textWrapperClass, Utils.Transitions.classTransitionInWithPrevClass(waypointEntered, prevTextStyle)), splashClass)>
               {ReasonReact.string("StackSmithStudio")}
             </div>
           }}
         </WaypointGenerator>
       </div>
-    </div>
+    </>
 };

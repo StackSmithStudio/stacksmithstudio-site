@@ -44,7 +44,6 @@ let heroAreaInnerClass = [%bs.raw
 let menuAreaClass = [%bs.raw {| css(tw`
   pin-t	
   z-10
-  bg-red
 `) |}];
 
 let partsAreaClass = [%bs.raw {| css(tw`
@@ -96,43 +95,38 @@ let make = (~props: PagePropType.props, _children) => {
         }
       }
     >
-      <div className=gridClass>
-        <div className=cx(cx(menuAreaClass, Utils.CssGrid.splashClass), Utils.CssGrid.menuRowClass)> <Menu parts /> </div>
-        <div className=cx(cx(introAreaClass, Utils.CssGrid.splashClass), Utils.CssGrid.rowIntroClass)>
-          <div className=heroAreaClass>
-            <div className=heroAreaInnerClass>
-              <Intro />
-            </div>
-          </div>
-        </div>
-          {
-            parts
-            |> Belt.Array.mapWithIndex(_, (index, edge) =>
-                <Part
-                  rowClass=Utils.CssGrid.rowClassName(index |> addOne)
-                  splashCss=Utils.CssGrid.splashClass
-                  mainCss=Utils.CssGrid.proseClass
-                  title=edge##node##frontmatter##title
-                  body=edge##node##html
-                  color=(
-                    Section.colors
-                    |> Belt.List.get(_, index)
-                    |> Belt.Option.getWithDefault(_, Section.WHITE)
-                  )
-                  orientation=(
-                    Section.orientations
-                    |> Belt.List.get(_, index)
-                    |> Belt.Option.getWithDefault(_, Section.CENTER)
-                  )
-                />)
-            |> ReasonReact.array
-          }
+      <div className=(parts |> Belt.List.fromArray |> Belt.List.length |> gridClass)>
+        <div className=cx(cx(cx(menuAreaClass, Utils.CssGrid.splashClass), Utils.CssGrid.menuRowClass), "bg-charcoal")> <Menu parts /> </div>
+        <Intro splashClass=Utils.CssGrid.splashClass rowClass=Utils.CssGrid.rowIntroClass/>
+        {
+          parts
+          |> Belt.Array.mapWithIndex(_, (index, edge) =>
+              <Part
+                rowClass=Utils.CssGrid.rowClassName(index |> addOne)
+                
+                splashCss=Utils.CssGrid.splashClass
+                mainCss=Utils.CssGrid.proseClass
+                title=edge##node##frontmatter##title
+                body=edge##node##html
+                color=(
+                  Section.colors
+                  |> Belt.List.get(_, index)
+                  |> Belt.Option.getWithDefault(_, Section.WHITE)
+                )
+                orientation=(
+                  Section.orientations
+                  |> Belt.List.get(_, index)
+                  |> Belt.Option.getWithDefault(_, Section.CENTER)
+                )
+              />)
+          |> ReasonReact.array
+        }
         /* <Projects
           projects
           selectProject={pid => self.send(SelectProject(Some(pid)))}
         /> */
         <Contact
-          rowClass=(parts |> Belt.List.fromArray |> Belt.List.length |> addOne |> Utils.CssGrid.rowClassName)
+          rowClass=Utils.CssGrid.rowFooterClass
           splashCss=Utils.CssGrid.splashClass
           mainCss=Utils.CssGrid.proseClass
         />
