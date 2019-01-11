@@ -1,7 +1,7 @@
 let fullName = "full";
 let mainName = "main";
 
-let numColumns = 14;
+let numColumns = 12;
 
 let gridClass = (numMainRows) =>
  /* need this until subgrid */
@@ -12,18 +12,20 @@ let gridClass = (numMainRows) =>
       [" ++ fullName ++ "-start]
       minmax(1em, 4fr)
       [" ++ mainName ++ "-start]
-      repeat(12, [col] minmax(0, 4em))
+      "
+      ++ "repeat(" ++ string_of_int(numColumns) ++ ", [col-start] minmax(0, 4rem) [col-end])" ++
+      "
       [" ++ mainName ++ "-end]
       minmax(1em, 4fr)
       [" ++ fullName ++ "-end];
 
     grid-template-rows:
-      [menu-start]
-      4rem
-      [menu-end intro]
-      minmax(32rem, 100vh)
+      /* [menu-start]
+      4rem */
+      [intro]
+      minmax(8rem, 24rem)
       "
-      ++ "repeat(" ++ string_of_int(numMainRows) ++ ", [row-start] minmax(32rem, auto) [row-end])" ++
+      ++ "repeat(" ++ string_of_int(numMainRows) ++ ", [row-start] auto [row-end])" ++
       "
       [footer-start]
       minmax(32rem, 100vh)
@@ -37,6 +39,36 @@ let gridClass = (numMainRows) =>
 let menuRowClass = Utils_Css.toClass("
   {
     grid-row: menu;
+  }
+");
+
+let columnClass = (column) => Utils_Css.toClass("
+  {
+    grid-column: col-start " ++ string_of_int(column) ++ ";
+  }
+");
+
+let columnRangeClass = (columnBegin, columnEnd) => Utils_Css.toClass("
+  {
+    grid-column: col-start " ++ string_of_int(columnBegin) ++ " / col-end " ++ string_of_int(columnEnd) ++ ";
+  }
+");
+
+let columnStartClass = (columnBegin) => Utils_Css.toClass("
+  {
+    grid-column-start: col-start " ++ string_of_int(columnBegin) ++ ";
+  }
+");
+
+let columnEndClass = (columnBegin) => Utils_Css.toClass("
+  {
+    grid-column-end: col-end " ++ string_of_int(columnBegin) ++ ";
+  }
+");
+
+let columnFullEndClass = Utils_Css.toClass("
+  {
+    grid-column-end: full-end;
   }
 ");
 

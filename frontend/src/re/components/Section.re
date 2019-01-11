@@ -22,19 +22,18 @@ type size =
   | FULL;
 
 let colorTextSwitch = (color) => {
-  /* switch(color){
-  | STEEL => [%bs.raw {| css(tw` text-white `) |} ]
-  | GREY => [%bs.raw {| css(tw` text-grey-darker `) |} ]
-  | WHITE => [%bs.raw {| css(tw` text-grey-darker `) |} ]
-  }; */
-  [%bs.raw {| css(tw`text-red`) |}];
+  switch(color){
+  | STEEL => "text-white"
+  | GREY => "text-charcoal"
+  | WHITE => "text-charcoal"
+  };
 };
 
 let colorSwitch = (color) => {
   switch(color){
   | STEEL => cx(colorTextSwitch(color), "bg-charcoal")
-  | GREY => cx(colorTextSwitch(color), [%bs.raw {| css(tw` bg-grey-light `) |} ])
-  | WHITE => cx(colorTextSwitch(color), [%bs.raw {| css(tw` bg-grey-lighter `) |} ])
+  | GREY => cx(colorTextSwitch(color), "bg-gold")
+  | WHITE => cx(colorTextSwitch(color), "bg-white")
   }
 };
 
@@ -43,7 +42,6 @@ let sectionWrapper = (color, size) =>
     cx(
       [%bs.raw {| css(tw`
         lg:px-0
-        bg-grey-lighter
         `)
       |}],
     switch(size){
@@ -123,7 +121,9 @@ let joinStringsWithSeparator = (listOfString : list(string), separator) =>
 joinStringsWithSeparator(_, "-")
 let make = (~title, ~orientation=CENTER, ~color=STEEL, ~size=REGULAR, ~image="", ~splashCss, ~mainCss, ~rowClass, children) => {
   ...component,
-  render: _self =>
+  render: _self => {
+    Js.log("color = ");
+    Js.log(color);
     <>
       <div className=cx(cx(sectionWrapper(color, size), splashCss), rowClass)/>
       /* <div className=sectionFlex>
@@ -154,4 +154,5 @@ let make = (~title, ~orientation=CENTER, ~color=STEEL, ~size=REGULAR, ~image="",
         /* <div className=sectionGutterRight(orientation) /> */
       </div>
     </>
+  }
 };

@@ -15,30 +15,16 @@ let introClass = [%bs.raw
   `) |}
 ];
 
-let introClassInternal = [%bs.raw {| css(tw`
-  w-full
-  mx-8
-  lg:w-2/3
-  lg:mx-0
-  flex
-  flex-wrap
-  justify-center
-  items-center
+let textClass = [%bs.raw {| css(tw`
   `)
 |}];
 
-let logoBaseClass = [%bs.raw {| css(tw`
-  text-white
-  text-5xl
-  pb-8
-  w-full
-  md:w-1/4
-  md:pb-2
-  text-center
-  md:text-left
-  flex
-  `)
-|}];
+let anvilInternalClass = [%bs.raw {| css(tw`
+  bg-contain
+  bg-no-repeat
+  bg-right-bottom
+`) |}];
+
 /* 
 let introSeparatorClass = [%bs.raw {| css(tw`
   border-0
@@ -61,15 +47,10 @@ let buttonClass = [%bs.raw
 
 let textWrapperBaseClass = [%bs.raw {| css(tw`
   flex
-  justify-center
   w-full
   text-white
-  text-4xl
+  text-2xl
   pt-8
-  md:pt-0
-  md:w-3/4
-  text-center
-  md:text-left
 `)
 |}];
 
@@ -78,16 +59,19 @@ let polishedTextClass = Utils.Transitions.polishTransitionStyle("all 3s ease 1s"
 let polishedLogoClass = Utils.Transitions.polishTransitionStyle("all 3s ease .5s");
 
 let textWrapperClass = cx(textWrapperBaseClass, polishedTextClass);
-let logoClass = cx(logoBaseClass, polishedLogoClass);
 
-let prevTextStyle = [%bs.raw {| css(tw` text-orange-light invisible `) |}];
+let prevTextStyle = [%bs.raw {| css(tw`
+  text-orange-light
+  invisible
+`) |}];
 
-let make = (~splashClass, ~rowClass, _children) => {
+let make = (~splashClass, ~rowClass, ~mainClass, ~anvilClass, _children) => {
   ...component,
   render: _self =>
     <>
       <div className=cx(cx(cx(introClass, rowClass), "bg-charcoal"), splashClass)/>
-      <div className=cx(rowClass, introClassInternal)>
+      <div className=cx(anvilInternalClass, cx(rowClass, cx(anvilClass, "bg-anvil")))/>
+      <div className=cx(cx(rowClass, textClass), mainClass)>
         /* <WaypointGenerator wayKey="logo">
           ...{(~waypointEntered) => {
             <div className=cx(logoClass, Utils.Transitions.classTransitionInWithPrevClass(waypointEntered, prevTextStyle))>
@@ -97,11 +81,12 @@ let make = (~splashClass, ~rowClass, _children) => {
         </WaypointGenerator> */
         <WaypointGenerator wayKey="maintext">
           ...{(~waypointEntered) => {
-            <div className=cx(cx(textWrapperClass, Utils.Transitions.classTransitionInWithPrevClass(waypointEntered, prevTextStyle)), splashClass)>
+            <div className=cx(textWrapperClass, Utils.Transitions.classTransitionInWithPrevClass(waypointEntered, prevTextStyle))>
               {ReasonReact.string("StackSmithStudio")}
             </div>
           }}
         </WaypointGenerator>
       </div>
+      /* <div className=cx(rowClass, cx("bg-anvil", anvilClass)) /> */
     </>
 };

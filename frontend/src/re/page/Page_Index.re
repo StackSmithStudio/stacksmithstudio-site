@@ -96,8 +96,13 @@ let make = (~props: PagePropType.props, _children) => {
       }
     >
       <div className=(parts |> Belt.List.fromArray |> Belt.List.length |> gridClass)>
-        <div className=cx(cx(cx(menuAreaClass, Utils.CssGrid.splashClass), Utils.CssGrid.menuRowClass), "bg-charcoal")> <Menu parts /> </div>
-        <Intro splashClass=Utils.CssGrid.splashClass rowClass=Utils.CssGrid.rowIntroClass/>
+        /* <div className=cx(cx(cx(menuAreaClass, Utils.CssGrid.splashClass), Utils.CssGrid.menuRowClass), "bg-charcoal")> <Menu parts /> </div> */
+        <Intro
+          splashClass=Utils.CssGrid.splashClass
+          rowClass=Utils.CssGrid.rowIntroClass
+          mainClass=Utils.CssGrid.proseClass
+          anvilClass=cx(Utils.CssGrid.columnStartClass(5), Utils.CssGrid.columnFullEndClass)
+        />
         {
           parts
           |> Belt.Array.mapWithIndex(_, (index, edge) =>

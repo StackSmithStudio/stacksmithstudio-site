@@ -3,6 +3,10 @@
   background-image: url("/greg.jpg");
 }
 
+.bg-anvil {
+  background-image: url("/anvil.png");
+}
+
 .bg-charcoal {
   background-color: #232525;
 }
@@ -21,6 +25,26 @@
 
 .bg-burgundy {
   background-color: #402e32;
+}
+
+.text-charcoal {
+  color: #232525;
+}
+
+.text-gold {
+  color: #d4af37;
+}
+
+.text-cyan {
+  color: #00cfae;
+}
+
+.text-white {
+  color: #dfe0df;
+}
+
+.text-burgundy {
+  color: #402e32;
 }
 
 .rotate-270{
