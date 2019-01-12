@@ -38,8 +38,8 @@ let bodyTextClass = [%bs.raw {| css(tw`
 
 let orientationToTextClass = (orientation) => {
   switch(orientation) {
-  | LEFT => Utils.CssGrid.columnRangeClass(1, 5)
-  | RIGHT => Utils.CssGrid.columnRangeClass(9, 14)
+  | LEFT => Utils.CssGrid.columnRangeClass(1, 4)
+  | RIGHT => Utils.CssGrid.columnRangeClass(10, 14)
   | CENTER => Utils.CssGrid.columnRangeClass(5, 10)
   }
 };

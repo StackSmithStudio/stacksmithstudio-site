@@ -19,6 +19,7 @@ let contactTextClass = [%bs.raw {| css(tw`
 
 let centerFormClass = [%bs.raw {| css(tw`
   py-12
+  w-full
 `)
 |}];
 
