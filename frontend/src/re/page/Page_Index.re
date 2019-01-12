@@ -96,7 +96,6 @@ let make = (~props: PagePropType.props, _children) => {
       }
     >
       <div className=(parts |> Belt.List.fromArray |> Belt.List.length |> gridClass)>
-        /* <div className=cx(cx(cx(menuAreaClass, Utils.CssGrid.splashClass), Utils.CssGrid.menuRowClass), "bg-charcoal")> <Menu parts /> </div> */
         <Intro
           splashClass=Utils.CssGrid.splashClass
           rowClass=Utils.CssGrid.rowIntroClass
@@ -107,21 +106,15 @@ let make = (~props: PagePropType.props, _children) => {
           parts
           |> Belt.Array.mapWithIndex(_, (index, edge) =>
               <Part
-                rowClass=Utils.CssGrid.rowClassName(index |> addOne)
-                
-                splashCss=Utils.CssGrid.splashClass
-                mainCss=Utils.CssGrid.proseClass
                 title=edge##node##frontmatter##title
                 body=edge##node##html
-                color=(
-                  Section.colors
-                  |> Belt.List.get(_, index)
-                  |> Belt.Option.getWithDefault(_, Section.WHITE)
-                )
+                image=None /* find an image*/
+                color=(Part.WHITE)
+                rowClass=Utils.CssGrid.rowClassName(index |> addOne)
                 orientation=(
-                  Section.orientations
+                  Part.orientations
                   |> Belt.List.get(_, index)
-                  |> Belt.Option.getWithDefault(_, Section.CENTER)
+                  |> Belt.Option.getWithDefault(_, Part.CENTER)
                 )
               />)
           |> ReasonReact.array
@@ -130,11 +123,7 @@ let make = (~props: PagePropType.props, _children) => {
           projects
           selectProject={pid => self.send(SelectProject(Some(pid)))}
         /> */
-        <Contact
-          rowClass=Utils.CssGrid.rowFooterClass
-          splashCss=Utils.CssGrid.splashClass
-          mainCss=Utils.CssGrid.proseClass
-        />
+        <Contact rowClass=Utils.CssGrid.rowFooterClass />
         /* <Footer
           links=props##data##footerLinks##html
           copyright=props##data##copyright##html

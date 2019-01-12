@@ -82,7 +82,7 @@ let make = (~splashClass, ~rowClass, ~mainClass, ~anvilClass, _children) => {
         <WaypointGenerator wayKey="maintext">
           ...{(~waypointEntered) => {
             <div className=cx(textWrapperClass, Utils.Transitions.classTransitionInWithPrevClass(waypointEntered, prevTextStyle))>
-              {ReasonReact.string("StackSmithStudio")}
+              <SouthSmithStudioText />
             </div>
           }}
         </WaypointGenerator>

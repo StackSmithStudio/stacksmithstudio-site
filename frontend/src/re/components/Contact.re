@@ -18,16 +18,21 @@ let contactTextClass = [%bs.raw {| css(tw`
 |}];
 
 let centerFormClass = [%bs.raw {| css(tw`
-  w-full
-  flex
-  justify-center
+  py-12
 `)
 |}];
 
-let make = (~splashCss, ~mainCss, ~rowClass, _children) => {
+let splashClass = Utils.CssGrid.splashClass;
+
+let make = (~rowClass, _children) => {
   ...component,
   render: _self =>
-    <Section orientation=Section.CENTER color=Section.STEEL size=Section.FULL title="Contact" splashCss mainCss rowClass>
+    <Section
+      title="Contact"
+      splashClass=cx(Part.colorToSplashClass(Part.STEEL), splashClass)
+      textClass=Part.orientationToTextClass(Part.CENTER)
+      rowClass
+    >
       <div key="contact-form" className=centerFormClass>
         <ContactForm />
       </div>

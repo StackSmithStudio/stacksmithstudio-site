@@ -1,7 +1,7 @@
 let fullName = "full";
 let mainName = "main";
 
-let numColumns = 12;
+let numColumns = 14;
 
 let gridClass = (numMainRows) =>
  /* need this until subgrid */
@@ -28,7 +28,7 @@ let gridClass = (numMainRows) =>
       ++ "repeat(" ++ string_of_int(numMainRows) ++ ", [row-start] auto [row-end])" ++
       "
       [footer-start]
-      minmax(32rem, 100vh)
+      auto
       [footer-end];
 
     & > * {
