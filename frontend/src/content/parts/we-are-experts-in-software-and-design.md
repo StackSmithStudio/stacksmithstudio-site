@@ -1,8 +1,8 @@
 ---
-title: We are experts in software and design.
+title: Bending
 image: /img/tiro.jpg
 name: Section 3
 ---
-StackSmithStudio cutting edge consulting company working in Brooklyn, New York.
+When one has full control over their domain, they are able to respond quickly to changes in the uncertain world.  
 
-We provide custom Software Product Development Services based on open-source technologies, tailored to your unique business needs.
+This is done with proper alignment, analytics, and utilization of available apis.  Bend your digital footprint to your whim.
