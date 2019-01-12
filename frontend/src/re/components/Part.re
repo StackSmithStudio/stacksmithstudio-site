@@ -32,7 +32,7 @@ let colorTextSwitch = (color) => {
 };
 
 let bodyTextClass = [%bs.raw {| css(tw`
-  pt-12
+  pt-8
 `)
 |}];
 

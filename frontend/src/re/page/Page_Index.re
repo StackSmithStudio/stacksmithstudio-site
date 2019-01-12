@@ -79,8 +79,6 @@ let make = (~props: PagePropType.props, _children) => {
   render: self => {
     let projects = props##data##projects##edges;
     let parts = props##data##parts##edges;
-    Js.log("parts");
-    Js.log(parts);
     <Modal
       modalSelect={self.state.projectModal}
       closeFn={() => self.send(SelectProject(None)) |> ignore}

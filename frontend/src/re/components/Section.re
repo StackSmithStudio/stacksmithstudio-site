@@ -4,16 +4,16 @@ let css = Css.css;
 let cx = Css.cx;
 let tw = Css.tw;
 
-/* let titleInternalClass = 
-  [%bs.raw {| css(tw`
-  pin-l
-  w-24
-  absolute
-  text-xs
-  `) |}
-];
+let titleInternalClass = 
+  cx(
+    [%bs.raw {| css(tw`
+      text-lg
+      `) |}
+    ],
+  "text-gold"
+);
 
-let titleWrapperClass = [%bs.raw {| css(tw`
+/*let titleWrapperClass = [%bs.raw {| css(tw`
   relative
   h-1
   mb-8
@@ -33,8 +33,7 @@ let sectionClass = cx(
 );
 
 let centerContent = [%bs.raw {| css(tw`
-  flex
-  items-center
+  pt-12
 `) |} ];
 
 let splashClassInternal = [%bs.raw {| css(tw`
@@ -49,14 +48,14 @@ let splashClassInternal = [%bs.raw {| css(tw`
 
 let textInternal = [%bs.raw {| css(tw`
   z-10
-  px-4
+  px-8
   w-full
   sm:w-auto
 `) |} ];
 
 let imageInternal = [%bs.raw {| css(tw`
   z-10
-  px-4
+  px-8
   w-full
   sm:w-auto
 `) |} ];
@@ -76,10 +75,13 @@ children) => {
     Js.log(image);
     <div className=sectionClass>
       <div className=cx(cx(splashClass, rowClass), splashClassInternal)/>
-      /* <div className=cx(cx(titleWrapperClass, titleClass), rowClass)>
-        <div className=cx(titleInternalClass, "rotate-270")> {ReasonReact.string(title)} </div>
-      </div> */
-      <div className=cx(cx(cx(centerContent, rowClass), textClass), textInternal)> {children |> ReasonReact.array} </div>
+      
+      <div className=cx(cx(cx(centerContent, rowClass), textClass), textInternal)>
+        <div>
+          <div className=titleInternalClass> {ReasonReact.string(title)} </div>
+          {children |> ReasonReact.array}
+        </div>
+      </div>
       {Belt.Option.mapWithDefault(image, <div />, (imageVal) =>
         <div className=cx(cx(cx(centerContent, rowClass), imageClass), imageInternal)>
           <img src=imageVal />
