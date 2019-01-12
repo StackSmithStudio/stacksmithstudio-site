@@ -1,5 +1,6 @@
 ---
 title: We learn your business and we mold it with you
+image: /img/illume.jpg
 name: Section 2
 ---
 We know you are the experts in your domain and we respect that.  At StackSmithStudio, we spend time learning your domain every detail of your business where things work well and where this could use support.
