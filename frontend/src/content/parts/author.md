@@ -1,5 +1,6 @@
 ---
 title: We embrace change
+image: /img/screen-shot-2019-01-11-at-9.05.05-pm.png
 name: section 1
 ---
 The web changes at a breakneck pace.  There are hundreds of different web frameworks and design systems and styles popping into the zeitgeist every year.
