@@ -24,6 +24,7 @@ collections:
     create: true
     fields:
       - {label: "Title", name: "title", widget: "string"}
+      - {label: "Image", name: "image", widget: "image", required: false}
       - {label: "Name", name: "name", widget: "string"}
       - {label: "Body", name: "body", widget: "markdown"}
 

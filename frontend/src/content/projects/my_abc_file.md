@@ -3,9 +3,7 @@ title: Canvs
 role: Tech Lead
 categories: ["NodeJS", "AngularJS", "Data Science", "D3", "Agile Development"]
 cover: canvs.jpg
-images:
-  - image: "canvs.jpg"
-  - image: "canvs.jpg"
+images: []
 jobType: ["job"]
 featured: true
 resume: true

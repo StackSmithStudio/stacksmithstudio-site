@@ -79,6 +79,8 @@ let make = (~props: PagePropType.props, _children) => {
   render: self => {
     let projects = props##data##projects##edges;
     let parts = props##data##parts##edges;
+    Js.log("parts");
+    Js.log(parts);
     <Modal
       modalSelect={self.state.projectModal}
       closeFn={() => self.send(SelectProject(None)) |> ignore}
@@ -108,7 +110,7 @@ let make = (~props: PagePropType.props, _children) => {
               <Part
                 title=edge##node##frontmatter##title
                 body=edge##node##html
-                image=None /* find an image*/
+                image=edge##node##frontmatter##image##publicURL
                 color=(Part.WHITE)
                 rowClass=Utils.CssGrid.rowClassName(index |> addOne)
                 orientation=(

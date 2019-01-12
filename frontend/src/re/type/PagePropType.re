@@ -1,8 +1,14 @@
 type imageType = {
   .
   "base": string,
-  "publicURL": string,
+  "publicURL": string
 };
+
+type singleImageType = {
+  .
+  "publicURL": option(string),
+};
+
 
 type imageWrapperType = {
   .
@@ -12,6 +18,7 @@ type imageWrapperType = {
 type frontmatterType = {
   .
   "title": string,
+  "image": singleImageType,
   "startTime": string,
   "endTime": string,
   "role": string,

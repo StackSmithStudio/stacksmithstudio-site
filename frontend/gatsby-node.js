@@ -31,9 +31,11 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
 
   /* dumb hack */
   const prevType = node.internal.type;
+  // console.log("before node = %j", node);
   node.internal.type = (node.internal.type === `MarkdownRemark` || node.internal.type === `Mdx`) ? "MarkdownRemark" : prevType;
   fmImagesToRelative(node);
   node.internal.type = prevType;
+  // console.log("after node = %j", node);
 
   if (node.internal.type === `MarkdownRemark` || node.internal.type === `Mdx`) {
     const fileNode = getNode(node.parent);
@@ -44,15 +46,11 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
 
     let slug;
     let prefix;
-    
 
     if (separatorExists) {
       const separatorPosition = filePath.indexOf(SLUG_SEPARATOR);
       const slugBeginning = separatorPosition + SLUG_SEPARATOR.length;
-      slug =
-        separatorPosition === 1
-          ? null
-          : `/${filePath.substring(slugBeginning)}`;
+      slug = (separatorPosition === 1 ? null : `/${filePath.substring(slugBeginning)}`);
       prefix = filePath.substring(1, separatorPosition);
     } else {
       slug = filePath;

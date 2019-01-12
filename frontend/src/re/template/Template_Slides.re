@@ -16,7 +16,7 @@ let tw = Css.tw;
 let make = (~props: PagePropType.props, _children) => {
   ...component,
   render: _self => {
-    let rawbodyWithImages = 
+    let rawbodyWithImages =
       props##data##page##frontmatter##images
       |> Belt.List.fromArray
       |> Belt.List.reduce(_, props##data##page##rawBody, (memoBody, image) => {
