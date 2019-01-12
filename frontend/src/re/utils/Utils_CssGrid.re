@@ -10,13 +10,13 @@ let gridClass = (numMainRows) =>
 
     grid-template-columns:
       [" ++ fullName ++ "-start]
-      minmax(1em, 4fr)
+      minmax(4rem, 4fr)
       [" ++ mainName ++ "-start]
       "
       ++ "repeat(" ++ string_of_int(numColumns) ++ ", [col-start] minmax(0, 4rem) [col-end])" ++
       "
       [" ++ mainName ++ "-end]
-      minmax(1em, 4fr)
+      minmax(4rem, 4fr)
       [" ++ fullName ++ "-end];
 
     grid-template-rows:

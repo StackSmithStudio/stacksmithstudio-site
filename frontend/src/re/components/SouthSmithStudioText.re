@@ -8,13 +8,13 @@ let make = (_children) => {
   ...component,
   render: _self => {
     <>
-      <div className="text-cyan">
+      <div className="text-primary-cyan">
         {ReasonReact.string("Stack")}
       </div>
-      <div className="text-gold">
+      <div className="text-primary-gold">
         {ReasonReact.string("Smith")}
       </div>
-      <div className="text-white">
+      <div className="text-primary-white">
         {ReasonReact.string("Studio")}
       </div>
     </>

@@ -7,43 +7,43 @@
   background-image: url("/anvil.png");
 }
 
-.bg-charcoal {
+.bg-primary-charcoal {
   background-color: #232525;
 }
 
-.bg-gold {
+.bg-primary-gold {
   background-color: #d4af37;
 }
 
-.bg-cyan {
+.bg-primary-cyan {
   background-color: #00cfae;
 }
 
-.bg-white {
+.bg-primary-white {
   background-color: #dfe0df;
 }
 
-.bg-burgundy {
+.bg-primary-burgundy {
   background-color: #402e32;
 }
 
-.text-charcoal {
+.text-primary-charcoal {
   color: #232525;
 }
 
-.text-gold {
+.text-primary-gold {
   color: #d4af37;
 }
 
-.text-cyan {
+.text-primary-cyan {
   color: #00cfae;
 }
 
-.text-white {
+.text-primary-white {
   color: #dfe0df;
 }
 
-.text-burgundy {
+.text-primary-burgundy {
   color: #402e32;
 }
 

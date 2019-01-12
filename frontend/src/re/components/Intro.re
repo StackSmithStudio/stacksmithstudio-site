@@ -69,16 +69,9 @@ let make = (~splashClass, ~rowClass, ~mainClass, ~anvilClass, _children) => {
   ...component,
   render: _self =>
     <>
-      <div className=cx(cx(cx(introClass, rowClass), "bg-charcoal"), splashClass)/>
+      <div className=cx(cx(cx(introClass, rowClass), "bg-primary-charcoal"), splashClass)/>
       <div className=cx(anvilInternalClass, cx(rowClass, cx(anvilClass, "bg-anvil")))/>
       <div className=cx(cx(rowClass, textClass), mainClass)>
-        /* <WaypointGenerator wayKey="logo">
-          ...{(~waypointEntered) => {
-            <div className=cx(logoClass, Utils.Transitions.classTransitionInWithPrevClass(waypointEntered, prevTextStyle))>
-              {ReasonReact.string("Logo Goes here")}
-            </div>
-          }}
-        </WaypointGenerator> */
         <WaypointGenerator wayKey="maintext">
           ...{(~waypointEntered) => {
             <div className=cx(textWrapperClass, Utils.Transitions.classTransitionInWithPrevClass(waypointEntered, prevTextStyle))>

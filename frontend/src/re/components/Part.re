@@ -15,7 +15,7 @@ type orientation =
   | RIGHT
   | CENTER;
 
-let colors = [WHITE, STEEL, GREY];
+let colors = [GREY, WHITE];
 
 let orientations = [LEFT, RIGHT, CENTER];
 
@@ -26,8 +26,8 @@ let splashClass = Utils.CssGrid.splashClass;
 let colorTextSwitch = (color) => {
   switch(color){
   | STEEL => "text-white"
-  | GREY => "text-charcoal"
-  | WHITE => "text-charcoal"
+  | GREY => "text-primary-charcoal"
+  | WHITE => "text-primary-charcoal"
   };
 };
 
@@ -54,9 +54,9 @@ let orientationToImageClass = (orientation) => {
 
 let colorToSplashClass = (color) => {
   switch(color){
-    | STEEL => cx(colorTextSwitch(color), "bg-charcoal")
-    | GREY => cx(colorTextSwitch(color), "bg-white")
-    | WHITE => cx(colorTextSwitch(color), "bg-white")
+    | STEEL => cx(colorTextSwitch(color), "bg-primary-charcoal")
+    | GREY => cx(colorTextSwitch(color), [%bs.raw {| css(tw` bg-white`)|}])
+    | WHITE => cx(colorTextSwitch(color), "bg-primary-white")
     }
 };
 

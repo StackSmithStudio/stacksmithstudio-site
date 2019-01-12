@@ -109,7 +109,10 @@ let make = (~props: PagePropType.props, _children) => {
                 title=edge##node##frontmatter##title
                 body=edge##node##html
                 image=edge##node##frontmatter##image##publicURL
-                color=(Part.WHITE)
+                color=(
+                  Part.colors
+                  |> Belt.List.get(_, index)
+                  |> Belt.Option.getWithDefault(_, Part.GREY))
                 rowClass=Utils.CssGrid.rowClassName(index |> addOne)
                 orientation=(
                   Part.orientations

@@ -10,7 +10,7 @@ let titleInternalClass =
       text-lg
       `) |}
     ],
-  "text-gold"
+  "text-primary-gold"
 );
 
 /*let titleWrapperClass = [%bs.raw {| css(tw`
@@ -49,6 +49,7 @@ let splashClassInternal = [%bs.raw {| css(tw`
 let textInternal = [%bs.raw {| css(tw`
   z-10
   px-8
+  sm:px-0
   w-full
   sm:w-auto
 `) |} ];
@@ -56,8 +57,14 @@ let textInternal = [%bs.raw {| css(tw`
 let imageInternal = [%bs.raw {| css(tw`
   z-10
   px-8
+  sm:px-0
   w-full
   sm:w-auto
+  pb-12
+`) |} ];
+
+let imageSrcClass = [%bs.raw {| css(tw`
+  shadow-lg
 `) |} ];
 
 let make = (
@@ -84,7 +91,7 @@ children) => {
       </div>
       {Belt.Option.mapWithDefault(image, <div />, (imageVal) =>
         <div className=cx(cx(cx(centerContent, rowClass), imageClass), imageInternal)>
-          <img src=imageVal />
+          <img className=imageSrcClass src=imageVal />
         </div>
       )}
     </div>
