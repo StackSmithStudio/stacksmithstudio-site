@@ -72,13 +72,16 @@ let make = (~splashClass, ~rowClass, ~mainClass, ~anvilClass, _children) => {
       <div className=cx(cx(cx(introClass, rowClass), "bg-primary-charcoal"), splashClass)/>
       <div className=cx(anvilInternalClass, cx(rowClass, cx(anvilClass, "bg-anvil")))/>
       <div className=cx(cx(rowClass, textClass), mainClass)>
-        <WaypointGenerator wayKey="maintext">
+        /* <WaypointGenerator wayKey="maintext">
           ...{(~waypointEntered) => {
             <div className=cx(textWrapperClass, Utils.Transitions.classTransitionInWithPrevClass(waypointEntered, prevTextStyle))>
               <SouthSmithStudioText />
             </div>
           }}
-        </WaypointGenerator>
+        </WaypointGenerator> */
+        <div className=textWrapperClass>
+          <SouthSmithStudioText />
+        </div>
       </div>
       /* <div className=cx(rowClass, cx("bg-anvil", anvilClass)) /> */
     </>

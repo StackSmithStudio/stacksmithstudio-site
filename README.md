@@ -10,6 +10,24 @@ terraform plan
 terraform apply
 ```
 
+## Start up Boot2Dock
+
+```
+docker-machine create --driver virtualbox --virtualbox-disk-size "100000" default
+```
+or 
+```
+# if already created
+make clean # clean folders
+docker-machine restart default
+
+# worst case
+docker-machine rm default
+docker-machine create --driver virtualbox --virtualbox-disk-size "100000" default
+
+# restart laptop and do ^ super worst case
+```
+
 ## set up docker local images
 ```
 docker-machine upgrade default
