@@ -55,6 +55,7 @@ export const query = graphql`
             image {
               publicURL
             }
+            order
           }
         }
       }

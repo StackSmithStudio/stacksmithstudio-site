@@ -38,16 +38,16 @@ let bodyTextClass = [%bs.raw {| css(tw`
 
 let orientationToTextClass = (orientation) => {
   switch(orientation) {
-  | LEFT => Utils.CssGrid.columnRangeClass(1, 4)
-  | RIGHT => Utils.CssGrid.columnRangeClass(10, 14)
-  | CENTER => Utils.CssGrid.columnRangeClass(5, 10)
+  | LEFT => Utils.CssGrid.columnRangeClass(1, 5)
+  | RIGHT => Utils.CssGrid.columnRangeClass(11, 15)
+  | CENTER => Utils.CssGrid.columnRangeClass(6, 10)
   }
 };
 
 let orientationToImageClass = (orientation) => {
   switch(orientation) {
-  | LEFT => Utils.CssGrid.columnRangeClass(8, 14)
-  | RIGHT => Utils.CssGrid.columnRangeClass(1, 6)
+  | LEFT => Utils.CssGrid.columnRangeClass(7, 15)
+  | RIGHT => Utils.CssGrid.columnRangeClass(1, 9)
   | CENTER => Utils_Css.toClass(" display: none; ") /* No image on center */
   }
 };

@@ -26,6 +26,7 @@ collections:
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Image", name: "image", widget: "image", required: false}
       - {label: "Name", name: "name", widget: "string"}
+      - {label: "Order", name: "order", widget: "number", default: 1, valueType: "int", min: 1}
       - {label: "Body", name: "body", widget: "markdown"}
 
   - name: "posts"

@@ -1,7 +1,7 @@
 let fullName = "full";
 let mainName = "main";
 
-let numColumns = 14;
+let numColumns = 15;
 
 let gridClass = (numMainRows) =>
  /* need this until subgrid */

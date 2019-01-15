@@ -77,8 +77,14 @@ let make = (~props: PagePropType.props, _children) => {
     | SelectProject(pid) => ReasonReact.Update({projectModal: pid})
     },
   render: self => {
+    let edgeSort = (edge) => edge##node##frontmatter##order;
+
     let projects = props##data##projects##edges;
-    let parts = props##data##parts##edges;
+    let parts =
+      props##data##parts##edges
+      |> Belt.List.fromArray
+      |> Belt.List.sort(_, (a, b) => edgeSort(a) - edgeSort(b))
+      |> Belt.List.toArray;
     <Modal
       modalSelect={self.state.projectModal}
       closeFn={() => self.send(SelectProject(None)) |> ignore}

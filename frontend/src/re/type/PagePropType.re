@@ -18,6 +18,7 @@ type imageWrapperType = {
 type frontmatterType = {
   .
   "title": string,
+  "order": int,
   "image": singleImageType,
   "startTime": string,
   "endTime": string,

@@ -65,6 +65,8 @@ let imageInternal = [%bs.raw {| css(tw`
 
 let imageSrcClass = [%bs.raw {| css(tw`
   shadow-lg
+  w-full
+  h-auto
 `) |} ];
 
 let make = (
