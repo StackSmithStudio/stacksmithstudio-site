@@ -2,6 +2,7 @@
 title: Welding
 image: /img/illume.jpg
 name: Section 2
+order: 3
 ---
 We know you are the experts in your domain and we respect that.  At StackSmithStudio, we spend time learning your domain every detail of your business where things work well and where this could use support.
 
