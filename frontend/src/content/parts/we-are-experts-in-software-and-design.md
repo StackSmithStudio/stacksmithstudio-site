@@ -2,6 +2,7 @@
 title: Bending
 image: /img/tiro.jpg
 name: Section 3
+order: 2
 ---
 When one has full control over their domain, they are able to respond quickly to changes in the uncertain world.  
 
