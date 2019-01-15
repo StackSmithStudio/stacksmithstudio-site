@@ -3,6 +3,7 @@ version: '2'
 services:
   site:
     image: gtdev87/stacksmithstudio-site
+    restart: "no"
     labels:
       kompose.volume.size: 5Gi
     build:
