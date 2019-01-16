@@ -33,6 +33,8 @@ let colorTextSwitch = (color) => {
 
 let bodyTextClass = [%bs.raw {| css(tw`
   pt-8
+  text-sm
+  font-light
 `)
 |}];
 
@@ -43,6 +45,12 @@ let orientationToTextClass = (orientation) => {
   | CENTER => Utils.CssGrid.columnRangeClass(6, 10)
   }
 };
+
+let internalTextClass = [%bs.raw {| css(tw`
+  text-lg
+  font-medium	
+`)
+|}];
 
 let orientationToImageClass = (orientation) => {
   switch(orientation) {
@@ -75,10 +83,17 @@ let make = (
     <Section
       title
       splashClass=cx(colorToSplashClass(color), splashClass)
-      textClass=orientationToTextClass(orientation)
+      textClass=cx(orientationToTextClass(orientation), internalTextClass)
       rowClass
       image
       imageClass=orientationToImageClass(orientation)
+      logoShow=(
+        switch(orientation){
+        | RIGHT => RIGHT
+        | LEFT => LEFT
+        | CENTER => NONE
+        }
+      )
     >
       <div className=cx(bodyTextClass, cx("markdownClass", colorTextSwitch(color)))>
         <Bodytext html_=body  />

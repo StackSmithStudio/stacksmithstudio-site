@@ -6,20 +6,9 @@ let tw = Css.tw;
 
 let titleInternalClass = 
   cx(
-    [%bs.raw {| css(tw`
-      text-lg
-      `) |}
-    ],
+    [%bs.raw {| css(tw` text-lg `) |}],
   "text-primary-gold"
 );
-
-/*let titleWrapperClass = [%bs.raw {| css(tw`
-  relative
-  h-1
-  mb-8
-  italic
-  `) |}
-]; */
 
 let sectionClass = cx(
   [%bs.raw {| css(tw`
@@ -52,6 +41,10 @@ let textInternal = [%bs.raw {| css(tw`
   sm:px-0
   w-full
   sm:w-auto
+  pb-12
+  flex
+  flex-col
+  justify-between
 `) |} ];
 
 let imageInternal = [%bs.raw {| css(tw`
@@ -69,6 +62,21 @@ let imageSrcClass = [%bs.raw {| css(tw`
   h-auto
 `) |} ];
 
+let logoClass = [%bs.raw {| css(tw`
+  h-12
+  w-12
+`) |} ];
+
+let logoRightClass = [%bs.raw {| css(tw`
+  flex
+  justify-end
+`) |} ];
+
+type logoShow =
+  | RIGHT
+  | LEFT
+  | NONE;
+
 let make = (
   ~title,
   ~textClass="",
@@ -76,26 +84,33 @@ let make = (
   ~image=None,
   ~imageClass="",
   ~splashClass,
+  ~logoShow=NONE,
   ~rowClass,
 children) => {
   ...component,
-  render: _self => {
-    Js.log("image - ");
-    Js.log(image);
+  render: _self =>
     <div className=sectionClass>
       <div className=cx(cx(splashClass, rowClass), splashClassInternal)/>
-      
       <div className=cx(cx(cx(centerContent, rowClass), textClass), textInternal)>
         <div>
           <div className=titleInternalClass> {ReasonReact.string(title)} </div>
           {children |> ReasonReact.array}
         </div>
+        {
+          logoShow != NONE ?
+            <div className=(logoShow == RIGHT ? logoRightClass : "")>
+              <StackSmithStudioText text=false dark=true logoClass />
+            </div> :
+          <div/>
+        }
+        
       </div>
-      {Belt.Option.mapWithDefault(image, <div />, (imageVal) =>
-        <div className=cx(cx(cx(centerContent, rowClass), imageClass), imageInternal)>
-          <img className=imageSrcClass src=imageVal />
-        </div>
-      )}
+      {
+        Belt.Option.mapWithDefault(image, <div />, (imageVal) =>
+          <div className=cx(cx(cx(centerContent, rowClass), imageClass), imageInternal)>
+            <img className=imageSrcClass src=imageVal />
+          </div>
+        )
+      }
     </div>
-  }
 };

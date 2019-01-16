@@ -65,6 +65,11 @@ let prevTextStyle = [%bs.raw {| css(tw`
   invisible
 `) |}];
 
+let logoClass = [%bs.raw {| css(tw`
+  h-8
+  w-8
+`) |}];
+
 let make = (~splashClass, ~rowClass, ~mainClass, ~anvilClass, _children) => {
   ...component,
   render: _self =>
@@ -75,13 +80,14 @@ let make = (~splashClass, ~rowClass, ~mainClass, ~anvilClass, _children) => {
         /* <WaypointGenerator wayKey="maintext">
           ...{(~waypointEntered) => {
             <div className=cx(textWrapperClass, Utils.Transitions.classTransitionInWithPrevClass(waypointEntered, prevTextStyle))>
-              <SouthSmithStudioText />
+              <StackSmithStudioText />
             </div>
           }}
         </WaypointGenerator> */
         <div className=textWrapperClass>
-          <SouthSmithStudioText />
+          <StackSmithStudioText />
         </div>
+        /* <StackSmithStudioText text=false logoClass /> */
       </div>
       /* <div className=cx(rowClass, cx("bg-anvil", anvilClass)) /> */
     </>

@@ -128,6 +128,51 @@ let make = (~props: PagePropType.props, _children) => {
               />)
           |> ReasonReact.array
         }
+        /* <Part
+                title=edge##node##frontmatter##title
+                body=edge##node##html
+                image=edge##node##frontmatter##image##publicURL
+                color=(
+                  Part.colors
+                  |> Belt.List.get(_, index)
+                  |> Belt.Option.getWithDefault(_, Part.GREY))
+                rowClass=Utils.CssGrid.rowClassName(index |> addOne)
+                orientation=(
+                  Part.orientations
+                  |> Belt.List.get(_, index)
+                  |> Belt.Option.getWithDefault(_, Part.CENTER)
+                )
+              />
+              <Part
+                title=edge##node##frontmatter##title
+                body=edge##node##html
+                image=edge##node##frontmatter##image##publicURL
+                color=(
+                  Part.colors
+                  |> Belt.List.get(_, index)
+                  |> Belt.Option.getWithDefault(_, Part.GREY))
+                rowClass=Utils.CssGrid.rowClassName(index |> addOne)
+                orientation=(
+                  Part.orientations
+                  |> Belt.List.get(_, index)
+                  |> Belt.Option.getWithDefault(_, Part.CENTER)
+                )
+              />
+              <Part
+                title=edge##node##frontmatter##title
+                body=edge##node##html
+                image=edge##node##frontmatter##image##publicURL
+                color=(
+                  Part.colors
+                  |> Belt.List.get(_, index)
+                  |> Belt.Option.getWithDefault(_, Part.GREY))
+                rowClass=Utils.CssGrid.rowClassName(index |> addOne)
+                orientation=(
+                  Part.orientations
+                  |> Belt.List.get(_, index)
+                  |> Belt.Option.getWithDefault(_, Part.CENTER)
+                )
+              /> */
         /* <Projects
           projects
           selectProject={pid => self.send(SelectProject(Some(pid)))}
