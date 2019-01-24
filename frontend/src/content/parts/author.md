@@ -1,6 +1,6 @@
 ---
 title: Forging
-image: /img/screen-shot-2019-01-11-at-9.05.05-pm.png
+image: /img/voyager_example.png
 name: section 1
 order: 1
 ---
